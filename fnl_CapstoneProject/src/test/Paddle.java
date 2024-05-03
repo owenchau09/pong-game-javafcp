@@ -1,3 +1,4 @@
+package test;
 import java.awt.*;
 
 public class Paddle {
@@ -5,9 +6,8 @@ public class Paddle {
 //	int xPos = window.width / 3;
 	
 	
-	public Paddle(int xPos, int yPos, int paddleWidth, int paddleLength) {
+	public Paddle(int paddleLength) {
 		this.paddleLength = paddleLength;
-		
 	}
 	
 	public int getPaddleSpeed() {
