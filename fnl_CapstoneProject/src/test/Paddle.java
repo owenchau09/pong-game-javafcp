@@ -3,11 +3,13 @@ import java.awt.*;
 
 public class Paddle {
 	private int paddleSpeed, paddleLength;
-//	int xPos = window.width / 3;
+	int xPos = 400;
+	int yPos = 400;
 	
 	
-	public Paddle(int paddleLength) {
+	public Paddle(int xPos, int yPos, int paddleWidth, int paddleLength) {
 		this.paddleLength = paddleLength;
+		
 	}
 	
 	public int getPaddleSpeed() {
@@ -38,6 +40,6 @@ public class Paddle {
 	{
 		g.setColor(Color.GREEN); // experimenting by making fill color green
 		
-//		g.fillRect(xPos, yPos, 10, paddleLength); // make a rectangle that has dimensions of 10x10
+		g.fillRect(xPos, yPos, 10, paddleLength); // make a rectangle that has dimensions of 10x10
 	}
 }
