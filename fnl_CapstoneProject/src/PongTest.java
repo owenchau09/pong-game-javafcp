@@ -1,7 +1,5 @@
 import javax.swing.JFrame;
 
-import java.awt.Color;
-import java.awt.Graphics;
 
 
 public class PongTest 
@@ -11,6 +9,9 @@ public class PongTest
 	static final int WIDTH = 1280, HEIGHT = 1280;
 	Ball pongBall;
 	Paddle p1, cpu;
+	
+	//p1.setPaddleLength(HEIGHT/10);
+	//cpu.setPaddleLength(HEIGHT/10);
 	
 	public void reset() {
 		
@@ -36,12 +37,11 @@ public class PongTest
 	}
  	public static void main(String[] args) {
 		JFrame window = new JFrame("Pong Game Remix");
-		window.setBounds(300, 300, 400, 150); // experimenting by making the window 200 wider
+		window.setBounds(150, 50, 1280, 750); 
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Drawer panel = new Drawer();
 		window.add(panel);
-
 		window.setVisible(true);
 	}
 	
