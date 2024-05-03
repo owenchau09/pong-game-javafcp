@@ -8,10 +8,11 @@ public class PongTest
 	int score1 = 0, score2 = 0;
 	static final int WIDTH = 1280, HEIGHT = 1280;
 	Ball pongBall;
-	Paddle p1, cpu;
 	
-	//p1.setPaddleLength(HEIGHT/10);
-	//cpu.setPaddleLength(HEIGHT/10);
+	Paddle p1 = new Paddle(HEIGHT/10);
+	Paddle cpu = new Paddle(HEIGHT/10);
+//	p1.setPaddleLength(10);
+//	cpu.setPaddleLength(HEIGHT/10);
 	
 	public void reset() {
 		
