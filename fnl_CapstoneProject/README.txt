@@ -15,7 +15,10 @@ This game is a remix of the popular game “Pong”. It features play against a 
 Target User Profile: For anyone who wants to play games!
 
 
-Instructions: Select whether you would like to play against a CPU or your friend
+Instructions: 
+1. Select whether you would like to play against a CPU or your friend
+2. Let the user interface load, then use up and down arrow keys to move your paddle
+3. Play until you or one person lose
 
 
 Class List:
