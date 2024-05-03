@@ -43,6 +43,7 @@ public class PongTest
 
 		Drawer panel = new Drawer();
 		window.add(panel);
+		Paddle paddle = new Paddle();
 		window.setVisible(true);
 	}
 	
