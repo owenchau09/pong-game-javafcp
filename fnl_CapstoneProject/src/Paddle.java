@@ -2,12 +2,20 @@ import java.awt.*;
 
 public class Paddle {
 	private int paddleSpeed, paddleLength;
-	int xPos = 400;
-	int yPos = 400;
+	int xPos;
+	int yPos;
+	int height;
+	int width;
 	
 	
-	public Paddle(int xPos, int yPos, int paddleWidth, int paddleLength) {
-		this.paddleLength = paddleLength;
+	public Paddle(/*int xPos, int yPos, int paddleWidth, int paddleLength*/) {
+//		this.paddleLength = paddleLength;
+	
+		xPos = 100;
+		yPos = 100;
+		height = 128;
+		width = 64;
+		
 		
 	}
 	
@@ -39,6 +47,6 @@ public class Paddle {
 	{
 		g.setColor(Color.GREEN); // experimenting by making fill color green
 		
-		g.fillRect(xPos, yPos, 10, paddleLength); // make a rectangle that has dimensions of 10x10
+		g.fillRect(xPos, yPos, width, height); // make a rectangle that has dimensions of 10x10
 	}
 }

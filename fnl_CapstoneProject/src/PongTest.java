@@ -9,8 +9,8 @@ public class PongTest
 	static final int WIDTH = 1280, HEIGHT = 1280;
 	Ball pongBall;
 	
-	Paddle p1 = new Paddle(HEIGHT/10);
-	Paddle cpu = new Paddle(HEIGHT/10);
+	Paddle p1 = new Paddle();
+	//Paddle cpu = new Paddle(HEIGHT/10);
 //	p1.setPaddleLength(10);
 //	cpu.setPaddleLength(HEIGHT/10);
 	
@@ -43,7 +43,6 @@ public class PongTest
 
 		Drawer panel = new Drawer();
 		window.add(panel);
-		Paddle paddle = new Paddle();
 		window.setVisible(true);
 	}
 	

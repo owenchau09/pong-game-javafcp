@@ -1,5 +1,5 @@
 
-//import java.awt.Color;
+import java.awt.Color;
 import java.awt.Graphics;
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
@@ -10,11 +10,11 @@ import javax.swing.JPanel;
 public class Drawer extends JPanel //implements ActionListener
 {
 	
-	private Paddle p1;
+	Paddle p1 = new Paddle();
 	
 	public Drawer()
 	{
-		p1 = new Paddle(300, 300, 100, 100);
+		
 		
 	}
 	
