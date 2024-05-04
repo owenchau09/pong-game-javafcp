@@ -1,20 +1,21 @@
 import java.awt.*;
 
 public class Paddle {
-	private int paddleSpeed, paddleLength;
-	int xPos;
-	int yPos;
-	int height;
-	int width;
+	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth;
+
 	
 	
-	public Paddle(/*int xPos, int yPos, int paddleWidth, int paddleLength*/) {
-//		this.paddleLength = paddleLength;
+	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth) {
+		this.xPos = xPos;
+		this.yPos = yPos;
+		this.paddleSpeed = paddleSpeed;
+		this.paddleLength = paddleLength;
+		this.paddleWidth = paddleWidth;
 	
-		xPos = 100;
-		yPos = 100;
-		height = 128;
-		width = 64;
+//		xPos = 100;
+//		yPos = 100;
+//		height = 128;
+//		width = 64;
 		
 		
 	}
@@ -47,6 +48,6 @@ public class Paddle {
 	{
 		g.setColor(Color.GREEN); // experimenting by making fill color green
 		
-		g.fillRect(xPos, yPos, width, height); // make a rectangle that has dimensions of 10x10
+		g.fillRect(xPos, yPos, paddleWidth, paddleLength); // make a rectangle that has dimensions of 10x10
 	}
 }

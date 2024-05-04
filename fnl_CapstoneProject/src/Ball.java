@@ -1,13 +1,18 @@
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Ball {
-	private int ballSpeed, ballRadius;
+	private int ballSpeed = 2, ballRadius, x, y, dirX=1, dirY=1;
 	private Color ballColor;
 	
-	public Ball(int ballSpeed, int ballRadius, Color ballColor) {
+	public Ball(int x, int y, int dirX, int dirY, int ballSpeed, int ballRadius, Color ballColor) {
 		this.ballSpeed = ballSpeed;
 		this.ballColor = ballColor;
 		this.ballRadius = ballRadius;
+		this.x = x;
+		this.y = y;
+		this.dirX = dirX;
+		this.dirY = dirY;
 	}
 	
 	public int getBallSpeed() {
@@ -34,11 +39,29 @@ public class Ball {
 		this.ballColor = ballColor;
 	}
 	
-	public void bounce() {
+	public void bounce(int topSide, int bottomSide) {
+		if(y > bottomSide-(ballRadius*2) || y < topSide) {
+			dirY*=-1;
+		}
+		
+		if(x < 0 || x > 1280-(ballRadius*2)) {
+			dirX*=-1;
+		}
 		
 	}
 	
 	public void moveBall() {
-		
+		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
+		x += (ballSpeed*dirX);
+		y += (ballSpeed*dirY);
+//		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
+				
 	}
+	public void draw(Graphics g)
+	{
+		g.setColor(Color.BLUE); 
+		
+		g.fillOval(x-ballRadius, y-ballRadius, ballRadius*2, ballRadius*2); 
+	}
+	
 }
