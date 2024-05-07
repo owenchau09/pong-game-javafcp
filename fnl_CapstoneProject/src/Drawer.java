@@ -5,8 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
-public class Drawer extends JPanel //implements ActionListener
+public class Drawer extends JPanel implements KeyListener
 {
 	
 	boolean startGame = true;
@@ -15,18 +17,6 @@ public class Drawer extends JPanel //implements ActionListener
 		
 	}
 	
-	public boolean collides() {
-		return false;
-	}
-	public void paintComponent() {
-		
-	}
-	public void draw() {
-		
-	}
-	public void keyPressed() {
-		
-	}
 	public void estimatedPosition() {
 		
 	}
@@ -34,12 +24,13 @@ public class Drawer extends JPanel //implements ActionListener
 		
 	}
 	static final int WIDTH = 1280, HEIGHT = 750;
-	int paddleLength = HEIGHT/10, x = 0, y = HEIGHT/2-paddleLength, paddleSpeed = 3, paddleWidth = 10; 
+	private boolean upKeyPressed = false, downKeyPressed = false;
+	int paddleLength = HEIGHT/10, x = 0, y = HEIGHT/2-paddleLength, paddleSpeed = 5, paddleWidth = 10; 
 	Paddle cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth);
 	Paddle p1 = new Paddle(WIDTH-26, y, paddleSpeed, paddleLength, paddleWidth);
 //	Paddle p1 = new Paddle(1250, y, paddleSpeed, paddleLength, paddleWidth);
 	
-	Ball pongBall = new Ball(WIDTH/2, HEIGHT/2, 1, 1, 3, 10, Color.BLUE);
+	Ball pongBall = new Ball(WIDTH/2, HEIGHT/2, 1, 1, 5, 10, Color.BLUE);
 	
 	
 	public Drawer()
@@ -48,9 +39,28 @@ public class Drawer extends JPanel //implements ActionListener
 		
 	}
 	
+	public void keyPressed(KeyEvent e) {
+	  	if (e.getKeyCode() == KeyEvent.VK_UP) {
+	  		upKeyPressed = true;
+	  	}
+	  	else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+	  		downKeyPressed = true;
+	  	}
+	  }
+	
 	public void run() {
 		pongBall.moveBall();
 		pongBall.bounce(0, HEIGHT);
+		if(p1.collides(pongBall)) {
+			pongBall.changeDirX();
+		}
+		if(upKeyPressed) {
+			p1.up();
+		}
+		else if(downKeyPressed) {
+			p1.down();
+		}
+		
 	}
 	
 	
@@ -59,6 +69,21 @@ public class Drawer extends JPanel //implements ActionListener
 		pongBall.draw(g);
 		cpu.draw(g);
 		p1.draw(g);
+	}
+
+	public void keyTyped(KeyEvent e) {
+		
+		
+	}
+
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+	  		upKeyPressed = false;
+	  	}
+	  	else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+	  		downKeyPressed = false;
+	  	}
+		
 	}
 
 

@@ -19,12 +19,28 @@ public class Ball {
 		return ballSpeed;
 	}
 	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
 	public int getBallRadius() {
 		return ballRadius;
 	}
 	
 	public Color getBallColor() {
 		return ballColor;
+	}
+	
+	public void changeDirX() {
+		dirX *= -1;
+	}
+	
+	public void changeDirY() {
+		dirY *= -1;
 	}
 	
 	public void setBallSpeed(int ballSpeed) {
@@ -40,18 +56,18 @@ public class Ball {
 	}
 	
 	public void bounce(int topSide, int bottomSide) {
-		if(y > bottomSide-(ballRadius*2) || y < topSide) {
+		if(y > (bottomSide-(ballRadius*4)) || y < (topSide+(ballRadius))) {
 			dirY*=-1;
 		}
 		
-		if(x < 0 || x > 1280-(ballRadius*2)) {
-			dirX*=-1;
-		}
+//		if(x < 0 || x > 1280-(ballRadius*2)) {
+//			dirX*=-1;
+//		}
 		
 	}
 	
 	public void moveBall() {
-		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
+//		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
 		x += (ballSpeed*dirX);
 		y += (ballSpeed*dirY);
 //		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);

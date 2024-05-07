@@ -32,16 +32,27 @@ public class Paddle {
 		this.paddleSpeed = paddleSpeed;
 	}
 	
-//	public void setPaddleLength(int paddleLength) {
-//		this.paddleLength = paddleLength;
-//	}
+	public void setPaddleLength(int paddleLength) {
+		this.paddleLength = paddleLength;
+	}
 	
 	public void up() {
-		
+		yPos -= paddleSpeed;
 	}
 	
 	public void down() {
-		
+		yPos += paddleSpeed;
+	}
+	
+	public boolean collides(Ball pongBall) {
+		if((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) < (xPos+paddleWidth)))) {
+			
+			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
+				System.out.println("passed");
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void draw(Graphics g)

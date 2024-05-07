@@ -12,6 +12,7 @@ public class PongTest
 		window.setBounds(150, 50, 1280, 750); 
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Drawer panel = new Drawer();
+		window.addKeyListener(panel);
 		window.add(panel);
 		window.setVisible(true);
 		
