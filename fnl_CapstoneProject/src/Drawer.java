@@ -69,6 +69,11 @@ public class Drawer extends JPanel implements KeyListener
 		pongBall.draw(g);
 		cpu.draw(g);
 		p1.draw(g);
+		
+		g.setColor(Color.RED);
+	    g.fillRect(400, 25, 400,300);
+	    
+
 	}
 
 	public void keyTyped(KeyEvent e) {

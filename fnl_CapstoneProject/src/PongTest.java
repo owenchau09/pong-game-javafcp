@@ -6,15 +6,22 @@ import java.awt.event.ActionListener;
 //main class
 public class PongTest 
 {
+	private static JTextField display;
 
  	public static void main(String[] args) {
-		JFrame window = new JFrame("Pong Game Remix");
-		window.setBounds(150, 50, 1280, 750); 
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame mainwindow = new JFrame("Pong Game Remix");
+		mainwindow.setResizable(false);
+		mainwindow.setBounds(150, 50, 1280, 750); 
+		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Drawer panel = new Drawer();
-		window.addKeyListener(panel);
-		window.add(panel);
-		window.setVisible(true);
+		mainwindow.addKeyListener(panel);
+		mainwindow.add(panel);
+		JButton newButton = new JButton("Player vs Cpu");
+		
+		
+		mainwindow.add(newButton);
+		
+		mainwindow.setVisible(true);
 		
 		//timer so that every 30 ms action occurs
 		Timer timer = new Timer(30, new ActionListener() {
@@ -25,7 +32,33 @@ public class PongTest
 		});
 		timer.start();
 		
+		JFrame cpuWindow = new JFrame("Player vs Cpu");
+		cpuWindow.setResizable(false);
+		cpuWindow.setBounds(150, 50, 1280, 750); 
+		cpuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Drawer secondPanel = new Drawer();
+		cpuWindow.addKeyListener(panel);
+		cpuWindow.add(panel);
+		cpuWindow.setVisible(false);
 		
-	}
-	
+		Timer timer1 = new Timer(30, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JButton b = (JButton)e.getSource();
+				mainwindow.setVisible(false);
+				cpuWindow.setVisible(true);
+			}
+		});
+ 	
+ 	}
 }
+		        
+			
+
+		
+	    
+
+		
+		
+	
+	
+
