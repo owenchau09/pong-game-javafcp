@@ -12,11 +12,41 @@ import java.awt.event.*;
 public class Drawer extends JPanel implements KeyListener
 {
 	
-	boolean startGame = true;
-	int score1 = 0, score2 = 0;
-	public void reset() {
+	boolean startGame;
+	int p1Score, cpuScore;
+	private int WINDOW_WIDTH, WINDOW_HEIGHT;
+	private boolean upKeyPressed, downKeyPressed;
+	int paddleLength, x, y, paddleSpeed, paddleWidth; 
+	Paddle cpu;
+	Paddle p1;
+	Ball pongBall;
+	
+	public Drawer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
+	{
+		this.WINDOW_WIDTH = WINDOW_WIDTH;
+		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
+		startGame = true;
+		p1Score = 0;
+		cpuScore = 0;
+		upKeyPressed = false;
+		downKeyPressed = false;
+		paddleLength = (WINDOW_HEIGHT)/10;
+		x = 0;
+		y = (WINDOW_HEIGHT)/2-paddleLength;
+		paddleSpeed = 5;
+		paddleWidth = 10; 
+		cpu = new Paddle(x+1, y, paddleSpeed, paddleLength, paddleWidth);
+		p1 = new Paddle(WINDOW_WIDTH-24, y, paddleSpeed, paddleLength, paddleWidth);
+		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH);
 		
 	}
+	
+	
+	public void reset() {
+		pongBall.setX(WINDOW_WIDTH/2);
+		pongBall.setY(WINDOW_HEIGHT/2);
+	}
+	
 	
 	public void estimatedPosition() {
 		
@@ -24,22 +54,8 @@ public class Drawer extends JPanel implements KeyListener
 	public void cpuMove() {
 		
 	}
-	static final int WIDTH = 1280, HEIGHT = 750;
-	private boolean upKeyPressed = false, downKeyPressed = false;
-	int paddleLength = HEIGHT/10, x = 0, y = HEIGHT/2-paddleLength, paddleSpeed = 5, paddleWidth = 10; 
-	Paddle cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth);
-	Paddle p1 = new Paddle(WIDTH-26, y, paddleSpeed, paddleLength, paddleWidth);
-//	Paddle p1 = new Paddle(1250, y, paddleSpeed, paddleLength, paddleWidth);
-	
-	Ball pongBall = new Ball(WIDTH/2, HEIGHT/2, 1, 1, 5, 10, Color.BLUE);
-	
-	
-	public Drawer()
-	{
+
 		
-		
-	}
-	
 	public void keyPressed(KeyEvent e) {
 	  	if (e.getKeyCode() == KeyEvent.VK_UP) {
 	  		upKeyPressed = true;
@@ -51,10 +67,23 @@ public class Drawer extends JPanel implements KeyListener
 	
 	public void run() {
 		pongBall.moveBall();
-		pongBall.bounce(0, HEIGHT);
+		pongBall.bounce(0, WINDOW_HEIGHT);
 		if(p1.collides(pongBall)) {
 			pongBall.changeDirX();
 		}
+		
+		if(pongBall.checkScoreP1(pongBall)) {
+			p1Score++;
+			reset();
+			System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
+		}
+		
+		if(pongBall.checkScoreCPU(pongBall)) {
+			cpuScore++;
+			reset();
+			System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
+		}
+		
 		if(upKeyPressed) {
 			p1.up();
 		}

@@ -8,11 +8,13 @@ import java.awt.event.ActionListener;
 public class PongTest 
 {
 
+	private static int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600;
+	
  	public static void main(String[] args) {
 		JFrame window = new JFrame("Pong Game Remix");
-		window.setBounds(150, 50, 1280, 750); 
+		window.setBounds(150, 50, WINDOW_WIDTH, WINDOW_HEIGHT); 
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Drawer panel = new Drawer();
+		Drawer panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
 		window.addKeyListener(panel);
 		window.add(panel);
 		window.setVisible(true);

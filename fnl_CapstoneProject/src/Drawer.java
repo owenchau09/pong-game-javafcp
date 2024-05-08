@@ -23,7 +23,7 @@ public class Drawer extends JPanel implements KeyListener
 	public void cpuMove() {
 		
 	}
-	static final int WIDTH = 1280, HEIGHT = 750;
+	int WIDTH = getWidth(), HEIGHT = getHeight();
 	private boolean upKeyPressed = false, downKeyPressed = false;
 	int paddleLength = HEIGHT/10, x = 0, y = HEIGHT/2-paddleLength, paddleSpeed = 5, paddleWidth = 10; 
 	Paddle cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth);
