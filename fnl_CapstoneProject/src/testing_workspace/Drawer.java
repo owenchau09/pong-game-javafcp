@@ -12,11 +12,11 @@ import java.awt.event.*;
 public class Drawer extends JPanel implements KeyListener
 {
 	
-	boolean startGame;
-	int p1Score, cpuScore;
+	private boolean startGame;
+	private static int p1Score, cpuScore;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private boolean upKeyPressed, downKeyPressed;
-	int paddleLength, x, y, paddleSpeed, paddleWidth; 
+	private int paddleLength, x, y, paddleSpeed, paddleWidth, paddleCenterY, margin; 
 	Paddle cpu;
 	Paddle p1;
 	Ball pongBall;
@@ -30,14 +30,16 @@ public class Drawer extends JPanel implements KeyListener
 		cpuScore = 0;
 		upKeyPressed = false;
 		downKeyPressed = false;
-		paddleLength = (WINDOW_HEIGHT)/10;
-		x = 0;
-		y = (WINDOW_HEIGHT)/2-paddleLength;
+		paddleLength = (WINDOW_HEIGHT)/8;
+		margin = 20;
+		x = margin;
+		y = (WINDOW_HEIGHT)/2-paddleLength/2;
 		paddleSpeed = 5;
-		paddleWidth = 10; 
-		cpu = new Paddle(x+1, y, paddleSpeed, paddleLength, paddleWidth);
-		p1 = new Paddle(WINDOW_WIDTH-24, y, paddleSpeed, paddleLength, paddleWidth);
-		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH);
+		paddleWidth = 11;
+		paddleCenterY = y-(paddleLength/2);
+		cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth);
+		p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth);
+		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin);
 		
 	}
 	
@@ -52,7 +54,13 @@ public class Drawer extends JPanel implements KeyListener
 		
 	}
 	public void cpuMove() {
-		
+//		paddleCenterY = cpu.getYPos()-(paddleLength/2);
+//		if(paddleCenterY > pongBall.getY()) {
+//			cpu.down();
+//		}
+//		else if(paddleCenterY < pongBall.getY()) {
+//			cpu.up();
+//		}
 	}
 
 		
@@ -67,11 +75,35 @@ public class Drawer extends JPanel implements KeyListener
 	
 	public void run() {
 		pongBall.moveBall();
-		pongBall.bounce(0, WINDOW_HEIGHT);
-		if(p1.collides(pongBall)) {
+		if(cpu.collides(pongBall) || p1.collides(pongBall)) {
+			System.out.println("ADAJBFAJGFAKF");
 			pongBall.changeDirX();
 		}
 		
+//		if(p1.collides(pongBall)) {
+//			pongBall.changeDirX();
+//		}
+		
+		pongBall.bounce(0, WINDOW_HEIGHT);
+		
+		//player move
+		if(upKeyPressed) {
+			p1.up();
+		}
+		if(downKeyPressed) {
+			p1.down();
+		}
+		
+		//cpu move
+		paddleCenterY = cpu.getYPos()+(paddleLength/2);
+		if(paddleCenterY < pongBall.getY()) {
+			cpu.down();
+		}
+		if(paddleCenterY > pongBall.getY()) {
+			cpu.up();
+		}
+		
+		//score check
 		if(pongBall.checkScoreP1(pongBall)) {
 			p1Score++;
 			reset();
@@ -83,19 +115,14 @@ public class Drawer extends JPanel implements KeyListener
 			reset();
 			System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
 		}
-		
-		if(upKeyPressed) {
-			p1.up();
-		}
-		else if(downKeyPressed) {
-			p1.down();
-		}
+	
 		
 	}
 	
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		g.drawRect(margin, margin, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
 		pongBall.draw(g);
 		cpu.draw(g);
 		p1.draw(g);

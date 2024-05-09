@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ball {
-	private int ballSpeed = 2, ballRadius, x, y, dirX=1, dirY=1;
+	private int ballSpeed, ballRadius, x, y, dirX=1, dirY=1, margin;
 	private Color ballColor;
 	private int WINDOW_WIDTH;
 	
-	public Ball(int x, int y, int dirX, int dirY, int ballSpeed, int ballRadius, Color ballColor, int WINDOW_WIDTH) {
+	public Ball(int x, int y, int dirX, int dirY, int ballSpeed, int ballRadius, Color ballColor, int WINDOW_WIDTH, int margin) {
 		this.ballSpeed = ballSpeed;
 		this.ballColor = ballColor;
 		this.ballRadius = ballRadius;
@@ -16,6 +16,7 @@ public class Ball {
 		this.dirX = dirX;
 		this.dirY = dirY;
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
+		this.margin = margin;
 	}
 	
 	public int getBallSpeed() {
@@ -78,15 +79,15 @@ public class Ball {
 		y += (ballSpeed*dirY);
 	}
 	
-	public boolean checkScoreP1(Ball pongBall) {
-		if(pongBall.getX() >= WINDOW_WIDTH) {
+	public boolean checkScoreCPU(Ball pongBall) {
+		if(pongBall.getX() >= WINDOW_WIDTH-margin) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean checkScoreCPU(Ball pongBall) {
-		if(pongBall.getX() <= 0) {
+	public boolean checkScoreP1(Ball pongBall) {
+		if(pongBall.getX() < margin) {
 			return true;
 		}
 		return false;

@@ -24,6 +24,10 @@ public class Paddle {
 		return paddleSpeed;
 	}
 	
+	public int getYPos() {
+		return yPos;
+	}
+	
 	public int getPaddleLength() {
 		return paddleLength;
 	}
@@ -45,8 +49,9 @@ public class Paddle {
 	}
 	
 	public boolean collides(Ball pongBall) {
-		if((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) < (xPos+paddleWidth)))) {
-			
+//		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
+		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) < (xPos+paddleWidth)))) )){
+//			System.out.println("Apassed");
 			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
 				System.out.println("passed");
 				return true;

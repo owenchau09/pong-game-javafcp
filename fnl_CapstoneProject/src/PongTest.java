@@ -13,14 +13,14 @@ public class PongTest extends JPanel implements ActionListener
 	JPanel cpuWindow = new JPanel();
 	private JTextField search;
 	private JTextArea output;
-
+	private static int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600;
 	JPanel bottomPanel = new JPanel(new BorderLayout());
 	JPanel topPanel = new JPanel(new BorderLayout());
  	public static void main(String[] args) 
  	{
  		JFrame mainWindow = new JFrame("Pong Game Remix");
  		mainWindow.setResizable(false);
-		mainWindow.setBounds(150, 50, 1280, 750); 
+		mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+32); 
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		PongTest panel = new PongTest();
 		
@@ -95,7 +95,7 @@ public class PongTest extends JPanel implements ActionListener
 		JLabel label = new JLabel("Welcome to player vs CPU:");
 		topPanel.add(label, BorderLayout.CENTER);
 		add(topPanel, BorderLayout.NORTH);
-		Drawer panel = new Drawer();
+		Drawer panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
 		topPanel.addKeyListener(panel);
 		topPanel.add(panel, BorderLayout.SOUTH);
 
