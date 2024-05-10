@@ -1,5 +1,4 @@
 package testing_workspace;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
@@ -12,7 +11,6 @@ import java.awt.event.*;
 public class Drawer extends JPanel implements KeyListener
 {
 	
-	private boolean startGame;
 	private static int p1Score, cpuScore;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private boolean upKeyPressed, downKeyPressed;
@@ -25,7 +23,6 @@ public class Drawer extends JPanel implements KeyListener
 	{
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
 		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-		startGame = true;
 		p1Score = 0;
 		cpuScore = 0;
 		upKeyPressed = false;
@@ -76,7 +73,7 @@ public class Drawer extends JPanel implements KeyListener
 	public void run() {
 		pongBall.moveBall();
 		if(cpu.collides(pongBall) || p1.collides(pongBall)) {
-			System.out.println("ADAJBFAJGFAKF");
+//			System.out.println("ADAJBFAJGFAKF");
 			pongBall.changeDirX();
 		}
 		
