@@ -18,7 +18,8 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 	static JFrame mainWindow;
 	static JButton clickMe;
 	JPanel scoreBoard = new JPanel();
-	Drawer panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
+	Drawer panel;
+	private boolean runGame = false;
 	
 	public static void main(String[] args)
 	{
@@ -29,29 +30,17 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 	public PongTest()
 	{
 		mainWindow = new JFrame("Pong Game Remix");
-		mainWindow.setResizable(false);
+		clickMe = new JButton("Press to play against a cpu");
 		mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+32);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		PongTest panel = new PongTest();
-		mainWindow.add(panel);
-		mainWindow.setResizable(true);
+		panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
 		mainWindow.setVisible(true);
-		
-		mainWindow.addKeyListener(panel);
-		Timer timer = new Timer(30, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		        panel.run();
-		        panel.repaint();
-			}
-		});
-		timer.start();
-		
 		welcomeScreen = new JPanel();
 		welcomeScreen.setBackground(Color.GREEN);
-		welcomeScreen.setBounds(0, 0, 800, 600);
+		welcomeScreen.setBounds(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 		JLabel label = new JLabel("Hello and welcome to the Pong Game Remix!");
 		welcomeScreen.add(label);
-		clickMe = new JButton("Press to play against a cpu");
+//		mainWindow.add(welcomeScreen);
 		clickMe.addActionListener(
 				new ActionListener()
 				{
@@ -59,15 +48,21 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 					{
 						welcomeScreen.setVisible(false);
 						mainWindow.remove(welcomeScreen);
-					
+						runGame = true;
+						mainWindow.addKeyListener(panel);
 						mainWindow.add(panel);
-						timer.start();
+						welcomeScreen.setVisible(true);
 					}
 				});
-		welcomeScreen.add(clickMe);
-		welcomeScreen.setVisible(true);
-		
 		mainWindow.add(welcomeScreen);
+		welcomeScreen.add(clickMe);
+		Timer timer = new Timer(30, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        panel.run();
+		        panel.repaint();
+			}
+		});
+		timer.start();
 		
 		
 		
@@ -126,11 +121,16 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 		
 			
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 //	@Override
-	public void actionPerformed(ActionEvent k) {
-	
-	}
+//	public void actionPerformed(ActionEvent k) {
+//	
+//	}
 //		// TODO Auto-generated method stub
 //		
 //		if (k.getSource() == clickMe)
