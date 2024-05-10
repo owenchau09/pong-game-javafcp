@@ -10,7 +10,6 @@ import java.awt.event.*;
 public class Drawer extends JPanel implements KeyListener
 {
 	
-	private boolean startGame;
 	private static int p1Score, cpuScore;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private boolean upKeyPressed, downKeyPressed;
@@ -23,7 +22,6 @@ public class Drawer extends JPanel implements KeyListener
 	{
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
 		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-		startGame = true;
 		p1Score = 0;
 		cpuScore = 0;
 		upKeyPressed = false;
@@ -79,7 +77,6 @@ public class Drawer extends JPanel implements KeyListener
 	public void run() {
 		pongBall.moveBall();
 		if(cpu.collides(pongBall) || p1.collides(pongBall)) {
-			System.out.println("ADAJBFAJGFAKF");
 			pongBall.changeDirX();
 		}
 		
@@ -125,7 +122,8 @@ public class Drawer extends JPanel implements KeyListener
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawRect(margin, margin, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
+		g.drawRect(margin, margin+50, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
+		g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT/16);
 		pongBall.draw(g);
 		cpu.draw(g);
 		p1.draw(g);

@@ -11,7 +11,7 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 //	private static final String JButton = null;
 	private static JTextField display;
 	
-	private static int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600;
+	private static int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 700;
 	JPanel bottomPanel = new JPanel(new BorderLayout());
 	JPanel topPanel = new JPanel(new BorderLayout());
 	static JPanel welcomeScreen;

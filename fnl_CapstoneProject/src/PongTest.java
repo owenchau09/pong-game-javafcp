@@ -45,31 +45,34 @@ public class PongTest extends JPanel implements ActionListener
 						mainWindow.requestFocus();
 						
 
-			 		Drawer drawer1 = new Drawer();
-			 		int cpuScore = drawer1.getCpuScore();
-			 		int p1sScore = drawer1.getP1Score();
-			 		
-			 		scoreBoard.setBounds(0, 0, 100, 50);
-			 		
-			 		JPanel p1Score = new JPanel();
-			 		p1Score.setBounds(10, 20, 25, 25);
-			 		p1Score.setBackground(Color.WHITE);
-			 		JLabel actp1Sco = new JLabel("" + p1sScore);
-			 		p1Score.add(actp1Sco);
-			 		scoreBoard.add(p1Score);			 		
-			 		JPanel cpusScore = new JPanel();
-			 		cpusScore.setBounds(40, 20, 25, 25);
-			 		cpusScore.setBackground(Color.WHITE);
-			 		JLabel actSco = new JLabel("" + cpuScore);
-			 		cpusScore.add(actSco);
-			 		scoreBoard.add(cpusScore);
-			 		scoreBoard.setBackground(Color.BLACK);
+//				 		Drawer drawer1 = new Drawer();
+//				 		int cpuScore = drawer1.getCpuScore();
+//				 		int p1sScore = drawer1.getP1Score();
+//				 		
+//				 		scoreBoard.setBounds(0, 0, WINDOW_WIDTH, 50);
+//				 		
+//				 		JPanel p1Score = new JPanel();
+//				 		p1Score.setBounds(10, 20, 25, 25);
+//				 		p1Score.setBackground(Color.WHITE);
+//				 		JLabel actp1Sco = new JLabel("" + p1sScore);
+//				 		p1Score.add(actp1Sco);
+//				 		scoreBoard.add(p1Score);			 		
+//				 		JPanel cpusScore = new JPanel();
+//				 		cpusScore.setBounds(40, 20, 25, 25);
+//				 		cpusScore.setBackground(Color.WHITE);
+//				 		JLabel actSco = new JLabel("" + cpuScore);
+//				 		cpusScore.add(actSco);
+//				 		scoreBoard.add(cpusScore);
+//				 		scoreBoard.setBackground(Color.BLACK);
+//				 		mainWindow.add(scoreBoard);
+////				 		scoreBoard.requestFocus();
 					}
 				});
 		mainWindow.add(welcomeScreen);
 		welcomeScreen.add(clickMe);
 		Timer timer = new Timer(30, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				mainWindow.requestFocus();
 		        panel.run();
 		        panel.repaint();
 			}
