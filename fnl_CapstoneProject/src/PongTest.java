@@ -18,7 +18,7 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 	static JFrame mainWindow;
 	static JButton clickMe;
 	JPanel scoreBoard = new JPanel();
-	Drawer panel = new Drawer (1000, 500);
+	Drawer panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
 	
 	public static void main(String[] args)
 	{
@@ -32,8 +32,8 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 		mainWindow.setResizable(false);
 		mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+32);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		PongTest panel = new PongTest();		
-//		mainWindow.add(panel);
+//		PongTest panel = new PongTest();
+		mainWindow.add(panel);
 		mainWindow.setResizable(true);
 		mainWindow.setVisible(true);
 		
@@ -44,11 +44,11 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 		        panel.repaint();
 			}
 		});
-		//timer.start();
+		timer.start();
 		
 		welcomeScreen = new JPanel();
 		welcomeScreen.setBackground(Color.GREEN);
-		welcomeScreen.setBounds(0, 0, 800, 800);
+		welcomeScreen.setBounds(0, 0, 800, 600);
 		JLabel label = new JLabel("Hello and welcome to the Pong Game Remix!");
 		welcomeScreen.add(label);
 		clickMe = new JButton("Press to play against a cpu");
@@ -68,6 +68,7 @@ public class PongTest extends JPanel implements ActionListener//, KeyListener
 		welcomeScreen.setVisible(true);
 		
 		mainWindow.add(welcomeScreen);
+		
 		
 		
 		
