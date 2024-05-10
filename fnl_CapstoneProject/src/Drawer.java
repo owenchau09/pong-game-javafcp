@@ -74,7 +74,7 @@ public class Drawer extends JPanel implements KeyListener
 	public void run() {
 		pongBall.moveBall();
 		if(cpu.collides(pongBall) || p1.collides(pongBall)) {
-//			System.out.println("ADAJBFAJGFAKF");
+			System.out.println("ADAJBFAJGFAKF");
 			pongBall.changeDirX();
 		}
 		

@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class PongTest 
 {
 
-	private static int WINDOW_WIDTH = 1200, WINDOW_HEIGHT = 900;
+	private static int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600;
 	
  	public static void main(String[] args) {
 		JFrame window = new JFrame("Pong Game Remix");
