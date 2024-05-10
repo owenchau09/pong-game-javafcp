@@ -13,7 +13,7 @@ public class PongTest extends JPanel implements ActionListener
 	static JPanel welcomeScreen;
 	static JFrame mainWindow;
 	static JButton clickMe;
-	static JPanel scoreBoard = new JPanel();
+//	static JPanel scoreBoard = new JPanel();
 	static Drawer panel;
 	
 	public static void main(String[] args)
@@ -21,7 +21,8 @@ public class PongTest extends JPanel implements ActionListener
 		
 		mainWindow = new JFrame("Pong Game Remix");
 		clickMe = new JButton("Press to play against a cpu");
-		mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+32);
+//		mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+32);
+		mainWindow.setBounds(150, 50, WINDOW_WIDTH, WINDOW_HEIGHT+50);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
 		mainWindow.setVisible(true);

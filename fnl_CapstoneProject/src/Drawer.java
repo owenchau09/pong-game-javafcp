@@ -13,7 +13,7 @@ public class Drawer extends JPanel implements KeyListener
 	private static int p1Score, cpuScore;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private boolean upKeyPressed, downKeyPressed;
-	private int paddleLength, x, y, paddleSpeed, paddleWidth, paddleCenterY, margin; 
+	private int paddleLength, x, y, paddleSpeed, paddleWidth, paddleCenterY, margin, scoreBoardHeight; 
 	Paddle cpu;
 	Paddle p1;
 	Ball pongBall;
@@ -28,6 +28,7 @@ public class Drawer extends JPanel implements KeyListener
 		downKeyPressed = false;
 		paddleLength = (WINDOW_HEIGHT)/8;
 		margin = 20;
+		scoreBoardHeight = WINDOW_HEIGHT/16;
 		x = margin;
 		y = (WINDOW_HEIGHT)/2-paddleLength/2;
 		paddleSpeed = 5;
@@ -84,7 +85,7 @@ public class Drawer extends JPanel implements KeyListener
 //			pongBall.changeDirX();
 //		}
 		
-		pongBall.bounce(0, WINDOW_HEIGHT);
+		pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight);
 		
 		//player move
 		if(upKeyPressed) {
@@ -122,7 +123,7 @@ public class Drawer extends JPanel implements KeyListener
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawRect(margin, margin+50, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
+		g.drawRect(margin, margin+scoreBoardHeight, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
 		g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT/16);
 		pongBall.draw(g);
 		cpu.draw(g);
