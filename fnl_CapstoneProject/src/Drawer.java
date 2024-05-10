@@ -124,7 +124,7 @@ public class Drawer extends JPanel implements KeyListener
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawRect(margin, margin+scoreBoardHeight, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
-		g.drawRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT/16);
+		g.drawRect(margin, 0, WINDOW_WIDTH-margin, scoreBoardHeight); //scoreboard
 		pongBall.draw(g);
 		cpu.draw(g);
 		p1.draw(g);
