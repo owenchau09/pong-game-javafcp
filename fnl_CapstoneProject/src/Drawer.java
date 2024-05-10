@@ -41,6 +41,11 @@ public class Drawer extends JPanel implements KeyListener
 		
 	}
 	
+	public Drawer()
+	{
+		
+	}
+	
 	
 	public void reset() {
 		pongBall.setX(WINDOW_WIDTH/2);
@@ -140,7 +145,22 @@ public class Drawer extends JPanel implements KeyListener
 	  	}
 		
 	}
+	
+	public int getCpuScore()
+	{
+		int cpuScore1 = this.cpuScore;
+		
+		return cpuScore1;
+	}
+	
+	public int getP1Score()
+	{
+		int p1Score1 = this.p1Score;
+		
+		return p1Score1;
+	}
 
+	
 
 
 }
