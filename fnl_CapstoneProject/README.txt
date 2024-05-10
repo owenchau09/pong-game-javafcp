@@ -22,15 +22,35 @@ Instructions:
 
 
 Class List:
+PongTest
+* Setup window and executes Drawer
+Drawer
+* Runs the game 
+Paddle
+* Can move up and down 
+* Checks collisions with ball
+Ball
+* Bounces across the screen and determines when a point is scored
 
 
-Team Responsibility:
+Team Responsibility: 
+Owen: Created algorithms for collisions, game mechanics, and cpu algorithm
+Hayden: Created start screen, gui, 2-player game, and other graphics
+Hayden To-Do List
+- Scoreboard
+Owen To-Do List
+- Limit the y value for paddle so it doesnt go out of bounds
+
+
 
 
 Known Bugs/Workarounds:
 
 
-Key Learnings:
+Key Learnings: Game is reliant on coordinate systems and simple vectors that change direction when bounced
 
 
 Credit List:
+Rainbow Lab - Scaling of Window and making variables scalable instead of a constant
+AnimationDemo - setup of graphics and implementation of keylistener to code
+Hayden Floydadd ur credits for the gui stuff
