@@ -149,14 +149,14 @@ public class Drawer extends JPanel implements KeyListener
 	
 	public int getCpuScore()
 	{
-		int cpuScore1 = this.cpuScore;
+		int cpuScore1 = Drawer.cpuScore;
 		
 		return cpuScore1;
 	}
 	
 	public int getP1Score()
 	{
-		int p1Score1 = this.p1Score;
+		int p1Score1 = Drawer.p1Score;
 		
 		return p1Score1;
 	}
