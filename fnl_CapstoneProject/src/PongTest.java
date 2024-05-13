@@ -67,18 +67,19 @@ public class PongTest extends JPanel implements ActionListener
 //				 		scoreBoard.setBackground(Color.BLACK);
 //				 		mainWindow.add(scoreBoard);
 ////				 		scoreBoard.requestFocus();
+						Timer timer = new Timer(30, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+						        panel.run();
+						        panel.repaint();
+							}
+						});
+						timer.setInitialDelay(1000);
+						timer.start();
 					}
 				});
 		mainWindow.add(welcomeScreen);
 		welcomeScreen.add(clickMe);
-		Timer timer = new Timer(30, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//				mainWindow.requestFocus();
-		        panel.run();
-		        panel.repaint();
-			}
-		});
-		timer.start();
+//		timer.setInitialDelay(1000);
 		
 		
 		
