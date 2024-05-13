@@ -1,21 +1,21 @@
 import java.awt.*;
 
 public class Paddle {
-	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth;
+	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT;
 
 	
 	
-	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth) {
+	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth, int margin, int scoreBoardHeight, int WINDOW_HEIGHT) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.paddleSpeed = paddleSpeed;
 		this.paddleLength = paddleLength;
 		this.paddleWidth = paddleWidth;
+		this.margin = margin;
+		this.scoreBoardHeight = scoreBoardHeight;
+		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
 	
-//		xPos = 100;
-//		yPos = 100;
-//		height = 128;
-//		width = 64;
+
 		
 		
 	}
@@ -41,10 +41,14 @@ public class Paddle {
 	}
 	
 	public void up() {
-		yPos -= paddleSpeed;
+		if(yPos > (margin + scoreBoardHeight)) {
+			yPos -= paddleSpeed;
+		}
+		
 	}
 	
 	public void down() {
+		if((yPos + paddleLength) < (WINDOW_HEIGHT-margin))
 		yPos += paddleSpeed;
 	}
 	
