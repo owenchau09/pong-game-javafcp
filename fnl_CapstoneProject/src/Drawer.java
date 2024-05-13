@@ -34,8 +34,8 @@ public class Drawer extends JPanel implements KeyListener
 		paddleSpeed = 5;
 		paddleWidth = 11;
 		paddleCenterY = y-(paddleLength/2);
-		cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth);
-		p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth);
+		cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
+		p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
 		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin);
 		
 	}
