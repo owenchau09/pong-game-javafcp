@@ -14,10 +14,6 @@ public class Paddle {
 		this.margin = margin;
 		this.scoreBoardHeight = scoreBoardHeight;
 		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-	
-
-		
-		
 	}
 	
 	public int getPaddleSpeed() {
@@ -43,18 +39,17 @@ public class Paddle {
 	public void up() {
 		if(yPos > (margin + scoreBoardHeight)) {
 			yPos -= paddleSpeed;
-		}
-		
+		}	
 	}
 	
 	public void down() {
-		if((yPos + paddleLength) < (WINDOW_HEIGHT-margin))
+		if((yPos + paddleLength) < (WINDOW_HEIGHT+margin))
 		yPos += paddleSpeed;
 	}
 	
 	public boolean collides(Ball pongBall) {
 //		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
-		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) < (xPos+paddleWidth)))) )){
+		if((((((pongBall.getX() + pongBall.getBallRadius()) > (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) <= (xPos+paddleWidth)))) )){
 //			System.out.println("Apassed");
 			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
 				System.out.println("passed");

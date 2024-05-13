@@ -92,6 +92,13 @@ public class Ball {
 		return false;
 	}
 	
+	public boolean checkScoreP2(Ball pongBall) {
+		if(pongBall.getX() >= WINDOW_WIDTH-margin) {
+			return true;
+		}
+		return false;
+	}
+	
 	public void draw(Graphics g)
 	{
 		g.setColor(Color.BLUE); 
