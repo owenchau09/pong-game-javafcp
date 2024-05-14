@@ -67,7 +67,7 @@ public class Ball {
 	}
 	
 	public void bounce(int topSide, int bottomSide) {
-		if(y > (bottomSide-(ballRadius*4)) || y < (topSide+(ballRadius))) {
+		if(y >= (bottomSide-(ballRadius)) || y < (topSide+(ballRadius))) {
 			dirY*=-1;
 		}
 	}

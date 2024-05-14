@@ -49,7 +49,7 @@ public class Paddle {
 	
 	public boolean collides(Ball pongBall) {
 //		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
-		if((((((pongBall.getX() + pongBall.getBallRadius()) > (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) <= (xPos+paddleWidth)))) )){
+		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX()-pongBall.getBallRadius()) <= (xPos+paddleWidth)))))){
 //			System.out.println("Apassed");
 			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
 				System.out.println("passed");
