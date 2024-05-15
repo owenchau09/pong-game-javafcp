@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
+
+import testing_workspace.Ball;
+import testing_workspace.Paddle;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,92 +18,58 @@ public class Drawer extends JPanel implements KeyListener
 	private static int p1Score, cpuScore, p2Score, p3Score, p4Score;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private boolean upKeyPressed, downKeyPressed, wKeyPressed, sKeyPressed, aKeyPressed, dKeyPressed, leftKeyPressed, rightKeyPressed;
-	private int paddleLength, x, y, paddleSpeed, paddleWidth, paddleCenterY, margin, scoreBoardHeight, scoreBoardWidth; 
+	private int paddleLength, x, y, paddleSpeed, paddleWidth, paddleCenterY, margin, scoreBoardHeight, level, r, g, b, ballSpeed, rand, scoreBoardWidth; 
 	Paddle cpu, p1, p2;
 	sidePaddle p3, p4;
 	Ball pongBall;
+	Random random; 
+	Color color;
 	private boolean isMultiplayer = false, isQuadPlayer = false;
 	
-	public Drawer(int WINDOW_WIDTH, int WINDOW_HEIGHT, int numeral)
+	public Drawer(int WINDOW_WIDTH, int WINDOW_HEIGHT, int level)
 	{
-		if (numeral == 1)
-		{
-			
-		
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
 		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
+		this.level = level;
 		p1Score = 0;
 		cpuScore = 0;
 		upKeyPressed = false;
 		downKeyPressed = false;
-		
-		paddleLength = (WINDOW_HEIGHT)/8;
+		random = new Random();
+		ballSpeed = 10;
+		paddleLength = (WINDOW_HEIGHT)/7;
 		margin = 20;
 		scoreBoardHeight = WINDOW_HEIGHT/16;
 		x = margin;
 		y = (WINDOW_HEIGHT)/2-paddleLength/2;
-		paddleSpeed = 5;
+		paddleSpeed = 6;
 		paddleWidth = 11;
 		paddleCenterY = y-(paddleLength/2);
-		cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
-		p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
-		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.BLUE, WINDOW_WIDTH, margin);
+		if(level == 1) {
+			cpu = new Paddle(x, y, paddleSpeed-1, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.GREEN, WINDOW_WIDTH, margin);
 		}
-		if (numeral == 2)
-		{
-			this.WINDOW_WIDTH = WINDOW_WIDTH;
-			this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-			p1Score = 0;
-			p2Score = 0;
-			upKeyPressed = false;
-			downKeyPressed = false;
-			wKeyPressed = false;
-			sKeyPressed = false;
-			
-			paddleLength = (WINDOW_HEIGHT)/8;
-			margin = 20;
-			scoreBoardHeight = WINDOW_HEIGHT/16;
-			x = margin;
-			y = (WINDOW_HEIGHT)/2-paddleLength/2;
-			paddleSpeed = 5;
-			paddleWidth = 11;
-			paddleCenterY = y-(paddleLength/2);
-			
-			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
-			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
-
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin);
-			isMultiplayer = true;
+		else if(level == 2) {
+			cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 7, 10, Color.ORANGE, WINDOW_WIDTH, margin);	
 		}
-		if (numeral == 3)
-		{
-			this.WINDOW_WIDTH = WINDOW_WIDTH;
-			this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-			p1Score = 0;
-			p2Score = 0;
-			p3Score = 0;
-			p4Score = 0;
-			upKeyPressed = false;
-			downKeyPressed = false;
-			wKeyPressed = false;
-			sKeyPressed = false;
-			aKeyPressed = false;
-			dKeyPressed = false;
-			leftKeyPressed = false;
-			rightKeyPressed = false;
-			
-			paddleLength = (WINDOW_WIDTH)/8;
-			margin = 20;
-			scoreBoardHeight = WINDOW_HEIGHT/16;
-			x = margin;
-			y = (WINDOW_HEIGHT)/2-paddleLength/2;
-			paddleSpeed = 5;
-			paddleWidth = 11;
-			paddleCenterY = y-(paddleLength/2);
-			
+		else if(level == 3) {
+			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.RED, WINDOW_WIDTH, margin);
+		}
+		else if(level == 4) {
+			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin);
+		}
 		
-			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
-			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT);
+		if (level == 5)
+		{
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
 			p3 = new sidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_HEIGHT);
 			p4 = new sidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + margin - paddleWidth - 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH);
 			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin);
@@ -109,9 +79,31 @@ public class Drawer extends JPanel implements KeyListener
 	
 
 	
-	public Drawer()
+	public Drawer (int WINDOW_WIDTH, int WINDOW_HEIGHT)
 	{
+		this.WINDOW_WIDTH = WINDOW_WIDTH;
+		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
+		p1Score = 0;
+		p2Score = 0;
+		upKeyPressed = false;
+		downKeyPressed = false;
+		wKeyPressed = false;
+		sKeyPressed = false;
 		
+		paddleLength = (WINDOW_HEIGHT)/6;
+		margin = 20;
+		scoreBoardHeight = WINDOW_HEIGHT/16;
+		x = margin;
+		y = (WINDOW_HEIGHT)/2-paddleLength/2;
+		paddleSpeed = 6;
+		paddleWidth = 11;
+		paddleCenterY = y-(paddleLength/2);
+		
+		p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+		p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+
+		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.ORANGE, WINDOW_WIDTH, margin);
+		isMultiplayer = true;
 	}
 	
 	
@@ -159,7 +151,7 @@ public class Drawer extends JPanel implements KeyListener
 				pongBall.changeDirX();
 			}
 			
-			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight);
+			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
 			
 			if(upKeyPressed) {
 				p1.up();
@@ -172,6 +164,56 @@ public class Drawer extends JPanel implements KeyListener
 			}
 			if(sKeyPressed) {
 				p2.down();
+			}
+			if(pongBall.checkScoreP1(pongBall)) {
+				p1Score++;
+				reset();
+				System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreCPU(pongBall)) {
+				cpuScore++;
+				reset();
+				System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreP2(pongBall)) {
+				p2Score++;
+				reset();
+				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
+			}
+		}
+		else if (level == 4) {
+			if (p1.collides(pongBall) || cpu.collides(pongBall)) {
+				pongBall.changeDirX();
+				r = random.nextInt(256); 
+				g = random.nextInt(256);	 
+				b = random.nextInt(256);	 
+				Color randomColor = new Color(r, g, b);
+				pongBall.setBallColor(randomColor);
+				rand = (int) random.nextInt(20);
+				pongBall.setBallSpeed(ballSpeed + rand);
+				cpu.setPaddleSpeed(rand + paddleSpeed + (int) random.nextInt(20));
+				p1.setPaddleSpeed(rand + paddleSpeed + (int) random.nextInt(20));
+				cpu.setPaddleLength(paddleLength + (int) random.nextInt(WINDOW_HEIGHT-6*margin));
+				p1.setPaddleLength(paddleLength + (int) random.nextInt(WINDOW_HEIGHT-6*margin));
+			}
+			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
+			
+			if(upKeyPressed) {
+				p1.up();
+			}
+			if(downKeyPressed) {
+				p1.down();
+			}
+			
+			//cpu move
+			paddleCenterY = cpu.getYPos()+(paddleLength/2);
+			if(paddleCenterY < pongBall.getY()) {
+				cpu.down();
+			}
+			if(paddleCenterY > pongBall.getY()) {
+				cpu.up();
 			}
 			if(pongBall.checkScoreP1(pongBall)) {
 				p1Score++;

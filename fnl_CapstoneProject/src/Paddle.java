@@ -2,10 +2,11 @@ import java.awt.*;
 
 public class Paddle {
 	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT;
+	Color color;
 
 	
 	
-	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth, int margin, int scoreBoardHeight, int WINDOW_HEIGHT) {
+	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth, int margin, int scoreBoardHeight, int WINDOW_HEIGHT, Color color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.paddleSpeed = paddleSpeed;
@@ -14,6 +15,7 @@ public class Paddle {
 		this.margin = margin;
 		this.scoreBoardHeight = scoreBoardHeight;
 		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
+		this.color = color;
 	}
 	
 	public int getPaddleSpeed() {
@@ -61,7 +63,7 @@ public class Paddle {
 	
 	public void draw(Graphics g)
 	{
-		g.setColor(Color.GREEN); // experimenting by making fill color green
+		g.setColor(color); // experimenting by making fill color green
 		
 		g.fillRect(xPos, yPos, paddleWidth, paddleLength); // make a rectangle that has dimensions of 10x10
 	}
