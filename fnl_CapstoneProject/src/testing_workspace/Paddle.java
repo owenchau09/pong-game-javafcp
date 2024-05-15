@@ -2,23 +2,21 @@ package testing_workspace;
 import java.awt.*;
 
 public class Paddle {
-	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth;
+	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT;
+	Color color;
 
 	
 	
-	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth) {
+	public Paddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth, int margin, int scoreBoardHeight, int WINDOW_HEIGHT, Color color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.paddleSpeed = paddleSpeed;
 		this.paddleLength = paddleLength;
 		this.paddleWidth = paddleWidth;
-	
-//		xPos = 100;
-//		yPos = 100;
-//		height = 128;
-//		width = 64;
-		
-		
+		this.margin = margin;
+		this.scoreBoardHeight = scoreBoardHeight;
+		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
+		this.color = color;
 	}
 	
 	public int getPaddleSpeed() {
@@ -42,19 +40,22 @@ public class Paddle {
 	}
 	
 	public void up() {
-		yPos -= paddleSpeed;
+		if(yPos > (margin + scoreBoardHeight)) {
+			yPos -= paddleSpeed;
+		}	
 	}
 	
 	public void down() {
+		if((yPos + paddleLength) < (WINDOW_HEIGHT-margin+scoreBoardHeight))
 		yPos += paddleSpeed;
 	}
 	
 	public boolean collides(Ball pongBall) {
 //		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
-		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX() + pongBall.getBallRadius()) < (xPos+paddleWidth)))) )){
+		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX()-pongBall.getBallRadius()) <= (xPos+paddleWidth)))))){
 //			System.out.println("Apassed");
 			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
-				System.out.println("passed");
+//				System.out.println("passed");
 				return true;
 			}
 		}
@@ -63,7 +64,7 @@ public class Paddle {
 	
 	public void draw(Graphics g)
 	{
-		g.setColor(Color.GREEN); // experimenting by making fill color green
+		g.setColor(color); // experimenting by making fill color green
 		
 		g.fillRect(xPos, yPos, paddleWidth, paddleLength); // make a rectangle that has dimensions of 10x10
 	}
