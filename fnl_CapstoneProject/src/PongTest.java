@@ -2,42 +2,41 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.awt.BorderLayout;
 //main class
 public class PongTest extends JPanel implements ActionListener
 {	
-	private int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600, y = 1;
-	JPanel bottomPanel = new JPanel(new BorderLayout());
-	JPanel topPanel = new JPanel(new BorderLayout());
+	private int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 400, level = 4;
 	JPanel welcomeScreen;
 	JFrame mainWindow;
-	JButton clickMe, clickMe2;
+	JButton clickCPU, clickPVP, clickEasy, clickMedium, clickHard, clickRandom;
 	Drawer panel, panel2;
 	
 	public PongTest() {
 		mainWindow = new JFrame("Pong Game Remix");
-		clickMe = new JButton("Press to play against a cpu!");
-		clickMe2 = new JButton("Press to play against your friend!");
+		clickCPU = new JButton("Press to play against a cpu!");
+//		clickEasy = new JButton("Easy");  //4 cpu modes
+//		clickMedium = new JButton("Medium");
+//		clickHard = new JButton("Hard");
+//		clickHard = new JButton("Random Mode");
+		clickPVP = new JButton("Press to play against your friend!");
 		mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+82);
-//		mainWindow.setBounds(150, 50, WINDOW_WIDTH, WINDOW_HEIGHT+50);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
-		panel2 = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT, y);
+		panel = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT, level); //MAKE SURE the value of 'level' changes depending on what button is clicked
+		panel2 = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT);
 		mainWindow.setVisible(true);
 		welcomeScreen = new JPanel();
 		welcomeScreen.setBackground(Color.GREEN);
 		welcomeScreen.setBounds(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 		JLabel label = new JLabel("Welcome To Pong");
 		
-		clickMe.setPreferredSize(new Dimension(250, 100));
-		clickMe.setBackground(Color.RED);
-		clickMe2.setPreferredSize(new Dimension(300, 100));
-		clickMe2.setBackground(Color.PINK);
+		clickCPU.setPreferredSize(new Dimension(250, 100));
+		clickCPU.setBackground(Color.RED);
+		clickPVP.setPreferredSize(new Dimension(300, 100));
+		clickPVP.setBackground(Color.PINK);
 		
 		welcomeScreen.add(label);
 		
-		clickMe.addActionListener(
+		clickCPU.addActionListener(
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent l)
@@ -61,7 +60,7 @@ public class PongTest extends JPanel implements ActionListener
 				});
 		
 		
-		clickMe2.addActionListener(
+		clickPVP.addActionListener(
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent l)
@@ -85,8 +84,8 @@ public class PongTest extends JPanel implements ActionListener
 				});
 		mainWindow.add(welcomeScreen);
 
-		welcomeScreen.add(clickMe);
-		welcomeScreen.add(clickMe2);
+		welcomeScreen.add(clickCPU);
+		welcomeScreen.add(clickPVP);
 	}
 	
 	

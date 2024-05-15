@@ -72,7 +72,7 @@ public class Ball {
 		}
 	}
 	
-	public void moveBall() {
+	public void move() {
 //		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
 		x += (ballSpeed*dirX);
 		y += (ballSpeed*dirY);
@@ -101,7 +101,7 @@ public class Ball {
 	
 	public void draw(Graphics g)
 	{
-		g.setColor(Color.BLUE); 
+		g.setColor(ballColor); 
 		
 		g.fillOval(x-ballRadius, y-ballRadius, ballRadius*2, ballRadius*2); 
 	}

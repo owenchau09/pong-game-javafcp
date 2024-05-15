@@ -43,7 +43,7 @@ public class Paddle {
 	}
 	
 	public void down() {
-		if((yPos + paddleLength) < (WINDOW_HEIGHT+margin))
+		if((yPos + paddleLength) < (WINDOW_HEIGHT-margin+scoreBoardHeight))
 		yPos += paddleSpeed;
 	}
 	
@@ -52,7 +52,7 @@ public class Paddle {
 		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX()-pongBall.getBallRadius()) <= (xPos+paddleWidth)))))){
 //			System.out.println("Apassed");
 			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
-				System.out.println("passed");
+//				System.out.println("passed");
 				return true;
 			}
 		}
