@@ -62,7 +62,15 @@ public class Drawer extends JPanel implements KeyListener
 			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin);
 		}
 		
-		if (level == 5)
+		else if(level == 5) {
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
+			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.ORANGE, WINDOW_WIDTH, margin);
+			isMultiplayer = true;
+		}
+		
+		else if (level == 6)
 		{
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
@@ -71,35 +79,6 @@ public class Drawer extends JPanel implements KeyListener
 			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isQuadPlayer = true;
 		}
-	}
-	
-
-	
-	public Drawer (int WINDOW_WIDTH, int WINDOW_HEIGHT)
-	{
-		this.WINDOW_WIDTH = WINDOW_WIDTH;
-		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-		p1Score = 0;
-		p2Score = 0;
-		upKeyPressed = false;
-		downKeyPressed = false;
-		wKeyPressed = false;
-		sKeyPressed = false;
-		
-		paddleLength = (WINDOW_HEIGHT)/6;
-		margin = 20;
-		scoreBoardHeight = WINDOW_HEIGHT/16;
-		x = margin;
-		y = (WINDOW_HEIGHT)/2-paddleLength/2;
-		paddleSpeed = 6;
-		paddleWidth = 11;
-		paddleCenterY = y-(paddleLength/2);
-		
-		p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
-		p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
-
-		pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.ORANGE, WINDOW_WIDTH, margin);
-		isMultiplayer = true;
 	}
 	
 	
