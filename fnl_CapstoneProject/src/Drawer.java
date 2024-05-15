@@ -1,11 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
-
-import testing_workspace.Ball;
-import testing_workspace.Paddle;
-
-import java.awt.*;
+import 	java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -72,7 +68,7 @@ public class Drawer extends JPanel implements KeyListener
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
 			p3 = new sidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_HEIGHT);
 			p4 = new sidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + margin - paddleWidth - 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isQuadPlayer = true;
 		}
 	}
@@ -270,6 +266,29 @@ public class Drawer extends JPanel implements KeyListener
 				p4.left();
 			}
 			
+			if(pongBall.checkScoreP1(pongBall)) {
+				//p1Score++;
+				reset();
+				System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreP3(pongBall)) {
+				//cpuScore++;
+				reset();
+				System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreP2(pongBall)) {
+				//p2Score++;
+				reset();
+				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreP4(pongBall)) {
+				//p2Score++;
+				reset();
+				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
+			}
 		}
 		else
 		{

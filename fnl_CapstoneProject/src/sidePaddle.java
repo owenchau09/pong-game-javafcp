@@ -34,18 +34,18 @@ public class sidePaddle {
 	}
 	
 	public void right() {
-		if((xPos - (2*paddleLength)/3 ) < (WINDOW_WIDTH))
-			xPos += paddleSpeed;
+		if ((xPos + paddleLength) < (WINDOW_WIDTH*2))
+			xPos += paddleSpeed *2;
 	}
 	public void actRight() {
 		if ((xPos + paddleLength) < (WINDOW_WIDTH))
-			xPos += paddleSpeed;
+			xPos += paddleSpeed *2;
 	}
 	
 	public void left() {
 		
 		if(xPos > (margin + scoreBoardWidth)) {
-			xPos -= paddleSpeed;
+			xPos -=  2*paddleSpeed;
 		}	
 	}
 	
@@ -62,9 +62,23 @@ public class sidePaddle {
 //	}
 	
 	public boolean sideCollides(Ball pongBall) {
+		
+		boolean isTrue = false;
 //		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
-//		if ()
+		if ((pongBall.getY() + pongBall.getBallRadius()) >=  yPos && ((pongBall.getY() - pongBall.getBallRadius()) <= (yPos + paddleWidth)))
+		{
+			if ((pongBall.getX() > xPos) && ((pongBall.getX() - 2*pongBall.getBallRadius()) < (xPos+paddleLength)))
+			{
+				isTrue =  true;
+			}	
+		}
+		else
+		{
+			isTrue =  false;
+		}
+		return isTrue;
 	}
+
 	
 	public void draw(Graphics g)
 	{
@@ -72,5 +86,7 @@ public class sidePaddle {
 		
 		g.fillRect(xPos, yPos, paddleLength, paddleWidth); // make a rectangle that has dimensions of 10x10
 	}
+
+
 }
 
