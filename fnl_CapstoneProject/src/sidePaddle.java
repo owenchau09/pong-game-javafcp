@@ -63,14 +63,7 @@ public class sidePaddle {
 	
 	public boolean sideCollides(Ball pongBall) {
 //		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
-		if((((((pongBall.getY() >= (yPos)) && ((pongBall.getX() <= (xPos+paddleLength)))))))){
-			System.out.println("Apassed");
-			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
-				System.out.println("passed");
-				return true;
-			}
-		}
-		return false;
+		if ()
 	}
 	
 	public void draw(Graphics g)
