@@ -68,12 +68,12 @@ public class Ball {
 	}
 	
 	public void bounce(int topSide, int bottomSide) {
-		if(y > (bottomSide-(ballRadius*4)) || y < (topSide+(ballRadius))) {
+		if(y >= (bottomSide-(ballRadius)) || y < (topSide+(ballRadius))) {
 			dirY*=-1;
 		}
 	}
 	
-	public void moveBall() {
+	public void move() {
 //		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
 		x += (ballSpeed*dirX);
 		y += (ballSpeed*dirY);
@@ -93,9 +93,16 @@ public class Ball {
 		return false;
 	}
 	
+	public boolean checkScoreP2(Ball pongBall) {
+		if(pongBall.getX() >= WINDOW_WIDTH-margin) {
+			return true;
+		}
+		return false;
+	}
+	
 	public void draw(Graphics g)
 	{
-		g.setColor(Color.BLUE); 
+		g.setColor(ballColor); 
 		
 		g.fillOval(x-ballRadius, y-ballRadius, ballRadius*2, ballRadius*2); 
 	}
