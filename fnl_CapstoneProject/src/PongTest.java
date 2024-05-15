@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
 public class PongTest extends JPanel implements ActionListener
 {	
-	private int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 400, level = 4,y=1, x= 2, z=3;
+	private int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 400, level = 4,y=1, x= 2, z=5;
 	JPanel welcomeScreen;
 	JFrame mainWindow;
 	JButton clickCPU, clickPVP, clickEasy, clickMedium, clickHard, clickRandom, clickMe3;
