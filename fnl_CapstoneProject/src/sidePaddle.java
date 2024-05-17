@@ -1,6 +1,6 @@
 import java.awt.*;
 public class sidePaddle extends Paddle {
-	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, scoreBoardHeight, WINDOW_WIDTH, WINDOW_HEIGHT;
+	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, WINDOW_WIDTH;
 	private Color color;
 	
 	public sidePaddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth, int margin, int scoreBoardWidth, int WINDOW_WIDTH, int scoreBoardHeight, int WINDOW_HEIGHT, Color color) {
@@ -11,7 +11,6 @@ public class sidePaddle extends Paddle {
 		this.paddleLength = paddleLength;
 		this.paddleWidth = paddleWidth;
 		this.margin = margin;
-		this.scoreBoardWidth = scoreBoardWidth;
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
 		this.color = color;
 	}
