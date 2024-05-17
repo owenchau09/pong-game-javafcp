@@ -166,7 +166,7 @@ public class PongTest extends JPanel implements ActionListener
 					});
 			
 			
-			clickPVP.addActionListener(
+			clickPVP.addActionListener(0
 					new ActionListener()
 					{
 						public void actionPerformed(ActionEvent l)
@@ -211,8 +211,8 @@ public class PongTest extends JPanel implements ActionListener
 						}
 					});
 			
-			mainWindow.add(welcomeScreen);
-			welcomeScreen.setVisible(true);
+			
+			//welcomeScreen.setVisible(true);
 			welcomeScreen.add(clickCPU);
 //			welcomeScreen.add(clickEasy);
 //			welcomeScreen.add(clickMedium);
@@ -220,7 +220,9 @@ public class PongTest extends JPanel implements ActionListener
 //			welcomeScreen.add(clickRandom);
 			welcomeScreen.add(clickPVP);
 			welcomeScreen.add(clickFourPVP);
+			
 			welcomeScreen.setVisible(true);
+			mainWindow.add(welcomeScreen);
 		}
 	
 	

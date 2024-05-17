@@ -34,34 +34,42 @@ public class Ball {
 		this.margin = margin;
 	}
 	
+	// This method gets the current speed of the ball
 	public int getBallSpeed() {
 		return ballSpeed;
 	}
 	
+	// This method gets the x position of the ball
 	public int getX() {
 		return x;
 	}
 	
+	// This method gets the y position of the ball
 	public int getY() {
 		return y;
 	}
 	
+	// This method returns the radius of the ball
 	public int getBallRadius() {
 		return ballRadius;
 	}
 	
+	// This method gets the color of the ball
 	public Color getBallColor() {
 		return ballColor;
 	}
 	
+	// This method sets the x value of the ball
 	public void setX(int x) {
 		this.x = x;
 	}
 	
+	// This method sets the y value of the ball
 	public void setY(int y) {
 		this.y = y;
 	}
 	
+	// In the case of a collision between a ball and the paddle this method will be run
 	public void changeDirX() {
 		dirX *= -1;
 	}
@@ -70,18 +78,22 @@ public class Ball {
 		dirY *= -1;
 	}
 	
+	// This method sets the speed of the ball
 	public void setBallSpeed(int ballSpeed) {
 		this.ballSpeed = ballSpeed;
 	}
 	
+	// This method sets the radius of the ball
 	public void setBallRadius(int ballRadius) {
 		this.ballRadius = ballRadius;
 	}
 	
+	// This method sets the color of the ball
 	public void setBallColor(Color ballColor) {
 		this.ballColor = ballColor;
 	}
 	
+	// This method determines how the ball bounces
 	public void bounce(int topSide, int bottomSide) {
 		if(y >= (bottomSide-(ballRadius)) || y < (topSide+(ballRadius))) {
 			dirY*=-1;
