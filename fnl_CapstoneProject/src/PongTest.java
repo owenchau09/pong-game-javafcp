@@ -166,7 +166,7 @@ public class PongTest extends JPanel implements ActionListener
 					});
 			
 			
-			clickPVP.addActionListener(0
+			clickPVP.addActionListener(
 					new ActionListener()
 					{
 						public void actionPerformed(ActionEvent l)
