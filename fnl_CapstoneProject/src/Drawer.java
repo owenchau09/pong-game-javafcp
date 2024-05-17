@@ -66,7 +66,7 @@ public class Drawer extends JPanel implements KeyListener
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
 
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.ORANGE, WINDOW_WIDTH, margin);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin);
 			isMultiplayer = true;
 		}
 		
@@ -74,8 +74,8 @@ public class Drawer extends JPanel implements KeyListener
 		{
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
-			p3 = new sidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_HEIGHT);
-			p4 = new sidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + margin - paddleWidth - 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH);
+			p3 = new sidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, color.RED);
+			p4 = new sidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + scoreBoardHeight - margin - paddleWidth + 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, color.BLUE);
 			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLUE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isQuadPlayer = true;
 		}
@@ -143,19 +143,17 @@ public class Drawer extends JPanel implements KeyListener
 			if(pongBall.checkScoreP1(pongBall)) {
 				p1Score++;
 				reset();
-				System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
-			}
-			
-			if(pongBall.checkScoreCPU(pongBall)) {
-				cpuScore++;
-				reset();
-				System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
 			}
 			
 			if(pongBall.checkScoreP2(pongBall)) {
 				p2Score++;
 				reset();
-				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreP2(pongBall)) {
+				p2Score++;
+				reset();
+				System.out.println("player2 score:   " + p2Score); 
 			}
 		}
 		else if (level == 4) {
@@ -235,38 +233,35 @@ public class Drawer extends JPanel implements KeyListener
 			if (aKeyPressed) {
 				p3.left();
 			}
+			if (leftKeyPressed) {
+				p4.left();
+			}
 			if (dKeyPressed) {
 				p3.right();
 			}
 			if (rightKeyPressed) {
-				p4.actRight();
+				p4.right();
 			}
-			if (leftKeyPressed) {
-				p4.left();
-			}
+			
 			
 			if(pongBall.checkScoreP1(pongBall)) {
-				//p1Score++;
+				p2Score++;
 				reset();
-				System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
-			}
-			
-			if(pongBall.checkScoreP3(pongBall)) {
-				//cpuScore++;
-				reset();
-				System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
 			}
 			
 			if(pongBall.checkScoreP2(pongBall)) {
-				//p2Score++;
+				p1Score++;
 				reset();
-				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
+			}
+			
+			if(pongBall.checkScoreP3(pongBall)) {
+				p1Score++;
+				reset();
 			}
 			
 			if(pongBall.checkScoreP4(pongBall)) {
-				//p2Score++;
+				p2Score++;
 				reset();
-				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
 			}
 		}
 		else
@@ -311,13 +306,6 @@ public class Drawer extends JPanel implements KeyListener
 		}
 		
 		
-//		if(p1.collides(pongBall)) {
-//			pongBall.changeDirX();
-//		}
-		
-		
-		//score check
-		
 	
 	}
 	
@@ -343,17 +331,16 @@ public class Drawer extends JPanel implements KeyListener
 		}
 		else if (isQuadPlayer)
 		{
-//			String p1Scores = p1Score + "";
-//			String p2Scores = p2Score+ "";
-//			
-//			g.drawRect(margin, margin+scoreBoardHeight, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
-//			g.drawRect(margin, 0, WINDOW_WIDTH-margin, scoreBoardHeight); //scoreboard
-//			g.drawRect(margin, 1, (WINDOW_WIDTH-margin)/3, scoreBoardHeight - 2);
-//			g.drawString(p1Scores, margin + 700, scoreBoardHeight/2);
-//			g.drawString(p2Scores, margin + 50, scoreBoardHeight/2);
+			String p1Scores = p1Score + "";
+			String p2Scores = p2Score+ "";
+			
+			g.drawRect(margin, margin+scoreBoardHeight, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
+			g.drawRect(margin, 0, WINDOW_WIDTH-margin, scoreBoardHeight); //scoreboard
+			g.drawRect(margin, 1, (WINDOW_WIDTH-margin)/3, scoreBoardHeight - 2);
+			g.drawString(p1Scores, margin + 700, scoreBoardHeight/2);
+			g.drawString(p2Scores, margin + 50, scoreBoardHeight/2);
 
 			g.drawRect(margin + (2*WINDOW_WIDTH) / 3, 1, (WINDOW_WIDTH - margin)/3, scoreBoardHeight - 2);
-			g.drawRect(margin, margin+scoreBoardHeight, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
 
 			pongBall.draw(g);
 			p2.draw(g);

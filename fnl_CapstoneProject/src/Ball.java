@@ -89,7 +89,6 @@ public class Ball {
 	}
 	
 	public void move() {
-//		System.out.println("x: " + x + "   y: " + y + "  ballSpeed: " + ballSpeed + "   dirX: " + dirX + "   dirY: " + dirY);
 		x += (ballSpeed*dirX);
 		y += (ballSpeed*dirY);
 	}

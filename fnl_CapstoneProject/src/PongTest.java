@@ -46,6 +46,8 @@ public class PongTest extends JPanel implements ActionListener
 			clickPVP.setBackground(Color.PINK);
 			clickEasy.setPreferredSize(new Dimension(100, 100));
 			clickEasy.setBackground(Color.CYAN);
+			clickFourPVP.setPreferredSize(new Dimension(100, 100));
+			clickFourPVP.setBackground(Color.CYAN);
 			
 			welcomeScreen.add(label);
 			
@@ -208,6 +210,7 @@ public class PongTest extends JPanel implements ActionListener
 							timer.start();
 						}
 					});
+			
 			mainWindow.add(welcomeScreen);
 //	
 			welcomeScreen.add(clickCPU);
@@ -216,8 +219,7 @@ public class PongTest extends JPanel implements ActionListener
 //			welcomeScreen.add(clickHard);
 //			welcomeScreen.add(clickRandom);
 			welcomeScreen.add(clickPVP);
-			welcomeScreen.add(fourPVP);
-			mainWindow.setVisible(true);
+			welcomeScreen.add(clickFourPVP);
 		}
 	
 	

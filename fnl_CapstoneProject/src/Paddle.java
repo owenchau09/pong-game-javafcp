@@ -50,11 +50,8 @@ public class Paddle {
 	}
 	
 	public boolean collides(Ball pongBall) {
-//		System.out.println("xPos: " + xPos + "    xPos+paddleWidth: " + (xPos+paddleWidth) + "   center: " + (pongBall.getX() + pongBall.getBallRadius()));
 		if((((((pongBall.getX() + pongBall.getBallRadius()) >= (xPos)) && ((pongBall.getX()-pongBall.getBallRadius()) <= (xPos+paddleWidth)))))){
-//			System.out.println("Apassed");
 			if((pongBall.getY() > yPos) && ((pongBall.getY() - 2*pongBall.getBallRadius()) < (yPos+paddleLength))) {
-//				System.out.println("passed");
 				return true;
 			}
 		}
@@ -63,8 +60,8 @@ public class Paddle {
 	
 	public void draw(Graphics g)
 	{
-		g.setColor(color); // experimenting by making fill color green
+		g.setColor(color);
 		
-		g.fillRect(xPos, yPos, paddleWidth, paddleLength); // make a rectangle that has dimensions of 10x10
+		g.fillRect(xPos, yPos, paddleWidth, paddleLength);
 	}
 }
