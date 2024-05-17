@@ -212,7 +212,7 @@ public class PongTest extends JPanel implements ActionListener
 					});
 			
 			mainWindow.add(welcomeScreen);
-//	
+			welcomeScreen.setVisible(true);
 			welcomeScreen.add(clickCPU);
 //			welcomeScreen.add(clickEasy);
 //			welcomeScreen.add(clickMedium);
