@@ -220,6 +220,7 @@ public class PongTest extends JPanel implements ActionListener
 //			welcomeScreen.add(clickRandom);
 			welcomeScreen.add(clickPVP);
 			welcomeScreen.add(clickFourPVP);
+			welcomeScreen.setVisible(true);
 		}
 	
 	
