@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Paddle {
 	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT;
-	Color paddleColor;
+	private Color paddleColor;
 
 	
 	

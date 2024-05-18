@@ -3,8 +3,7 @@ import java.awt.Graphics;
 
 public class SidePaddle extends Paddle {
 	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, WINDOW_WIDTH;
-	private Color color;
-//	Ball pongBall;
+	private Color paddleColor;
 	
 	public SidePaddle(int xPos, int yPos, int paddleSpeed, int paddleLength, int paddleWidth, int margin, int scoreBoardWidth, int WINDOW_WIDTH, int scoreBoardHeight, int WINDOW_HEIGHT, Color color) {
 		super(xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, color);
@@ -15,7 +14,7 @@ public class SidePaddle extends Paddle {
 		this.paddleWidth = paddleWidth;
 		this.margin = margin;
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
-		this.color = color;
+		this.paddleColor = color;
 	}
 		
 	public void right() {
@@ -48,7 +47,7 @@ public class SidePaddle extends Paddle {
 	
 	public void draw(Graphics g)
 	{
-		g.setColor(color); 
+		g.setColor(paddleColor); 
 		
 		g.fillRect(xPos, yPos, paddleLength, paddleWidth); 
 	}

@@ -41,29 +41,29 @@ public class Drawer extends JPanel implements KeyListener
 		if(level == 1) {
 			cpu = new Paddle(x, y, paddleSpeed-1, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.GREEN, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.GREEN, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
 		else if(level == 2) {
 			cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 7, 10, Color.ORANGE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);	
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 7, 10, Color.ORANGE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);	
 		}
 		else if(level == 3) {
 			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.RED, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.RED, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
 		else if(level == 4) {
 			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
 		
 		else if(level == 5) {
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isMultiplayer = true;
 		}
 		
@@ -71,9 +71,9 @@ public class Drawer extends JPanel implements KeyListener
 		{
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
-			p3 = new SidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
-			p4 = new SidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + scoreBoardHeight - margin - paddleWidth + 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			p3 = new SidePaddle((15+WINDOW_WIDTH)/2-paddleLength/2, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p4 = new SidePaddle((15+WINDOW_WIDTH)/2-paddleLength/2, WINDOW_HEIGHT + scoreBoardHeight - margin - paddleWidth + 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isQuadPlayer = true;
 		}
 	}
