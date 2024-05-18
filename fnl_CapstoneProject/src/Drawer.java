@@ -9,14 +9,14 @@ import java.awt.event.*;
 public class Drawer extends JPanel implements KeyListener
 {
 	
-	private static int p1Score, cpuScore, p2Score;
+	private static int p1Score, p2Score, cpuScore;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private boolean upKeyPressed, downKeyPressed, wKeyPressed, sKeyPressed, aKeyPressed, dKeyPressed, leftKeyPressed, rightKeyPressed;
 	private int paddleLength, x, y, paddleSpeed, paddleWidth, paddleCenterY, margin, scoreBoardHeight, level, r, g, b, ballSpeed, rand, scoreBoardWidth; 
-	Paddle cpu, p1, p2;
-	sidePaddle p3, p4;
-	Ball pongBall;
-	Random random; 
+	private Paddle cpu, p1, p2;
+	private SidePaddle p3, p4;
+	private Ball pongBall;
+	private Random random; 
 	private boolean isMultiplayer = false, isQuadPlayer = false;
 	
 	public Drawer(int WINDOW_WIDTH, int WINDOW_HEIGHT, int level)
@@ -41,29 +41,29 @@ public class Drawer extends JPanel implements KeyListener
 		if(level == 1) {
 			cpu = new Paddle(x, y, paddleSpeed-1, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.GREEN, WINDOW_WIDTH, margin);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.GREEN, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
 		else if(level == 2) {
 			cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 7, 10, Color.ORANGE, WINDOW_WIDTH, margin);	
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 7, 10, Color.ORANGE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);	
 		}
 		else if(level == 3) {
 			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.RED, WINDOW_WIDTH, margin);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.RED, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
 		else if(level == 4) {
 			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
 		
 		else if(level == 5) {
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 
-			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin);
+			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isMultiplayer = true;
 		}
 		
@@ -71,8 +71,8 @@ public class Drawer extends JPanel implements KeyListener
 		{
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
 			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
-			p3 = new sidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
-			p4 = new sidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + scoreBoardHeight - margin - paddleWidth + 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			p3 = new SidePaddle(x +25*(WINDOW_WIDTH)/60, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p4 = new SidePaddle(x + 25*(WINDOW_WIDTH) / 60, WINDOW_HEIGHT + scoreBoardHeight - margin - paddleWidth + 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
 			pongBall = new Ball(WINDOW_WIDTH/2, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 			isQuadPlayer = true;
 		}
@@ -150,7 +150,6 @@ public class Drawer extends JPanel implements KeyListener
 			if(pongBall.checkScoreP2(pongBall)) {
 				p2Score++;
 				reset();
-				System.out.println("player2 score:   " + p2Score); 
 			}
 		}
 		else if (level == 4) {
@@ -188,19 +187,16 @@ public class Drawer extends JPanel implements KeyListener
 			if(pongBall.checkScoreP1(pongBall)) {
 				p1Score++;
 				reset();
-				System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
 			}
 			
 			if(pongBall.checkScoreCPU(pongBall)) {
 				cpuScore++;
 				reset();
-				System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
 			}
 			
 			if(pongBall.checkScoreP2(pongBall)) {
 				p2Score++;
 				reset();
-				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
 			}
 		}
 		else if (isQuadPlayer)
@@ -208,12 +204,11 @@ public class Drawer extends JPanel implements KeyListener
 			if (p1.collides(pongBall) || p2.collides(pongBall)) {
 				pongBall.changeDirX();
 			}
-			else if (p3.sideCollides(pongBall) || p4.sideCollides(pongBall))
+			 if (p3.horizontalCollides(pongBall) || p4.horizontalCollides(pongBall))
 			{
 				pongBall.changeDirY();
 			}
 			
-//			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight);
 			
 			if(upKeyPressed) {
 				p1.up();
@@ -286,19 +281,16 @@ public class Drawer extends JPanel implements KeyListener
 			if(pongBall.checkScoreP1(pongBall)) {
 				p1Score++;
 				reset();
-				System.out.println("player score:   " + p1Score); //make sure to comment out when creating the scoreboard
 			}
 			
 			if(pongBall.checkScoreCPU(pongBall)) {
 				cpuScore++;
 				reset();
-				System.out.println("cpu score:   " + cpuScore); //make sure to comment out when creating the scoreboard
 			}
 			
 			if(pongBall.checkScoreP2(pongBall)) {
 				p2Score++;
 				reset();
-				System.out.println("player2 score:   " + p2Score); //make sure to comment out when creating the scoreboard
 			}
 		}
 		

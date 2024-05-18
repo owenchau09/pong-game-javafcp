@@ -7,23 +7,24 @@ import java.awt.BorderLayout;
 public class PongTest extends JPanel implements ActionListener
 {	
 	private int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 400;
-	JPanel welcomeScreen;
-	JFrame mainWindow;
-	JButton clickCPU, clickPVP, clickEasy, clickMedium, clickHard, clickRandom, clickFourPVP;
-	Drawer random, fourPVP, easy, medium, hard, PVP;
+	private JPanel welcomeScreen;
+	private JFrame mainWindow;
+	private JButton clickCPU, clickEasy, clickMedium, clickHard, clickRandom, clickPVP, clickFourPVP;
+	private JLabel label;
+	private Drawer easy, medium, hard, random, PVP, fourPVP;
+	
 	
 		public PongTest() {
 			mainWindow = new JFrame("Pong Game Remix");
 			mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+82);
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			mainWindow.setVisible(true);
 			mainWindow.setResizable(false);
 			
 			welcomeScreen = new JPanel();
 			welcomeScreen.setBackground(Color.GREEN);
 			welcomeScreen.setBounds(0, 0, WINDOW_WIDTH+15, WINDOW_HEIGHT+82);
 			
-			JLabel label = new JLabel("Welcome To Pong");
+			label = new JLabel("Welcome To Pong");
 			
 			clickCPU = new JButton("Press to play against a cpu!");
 			clickEasy = new JButton("Easy");  //4 cpu modes
@@ -212,17 +213,13 @@ public class PongTest extends JPanel implements ActionListener
 					});
 			
 			
-			//welcomeScreen.setVisible(true);
 			welcomeScreen.add(clickCPU);
-//			welcomeScreen.add(clickEasy);
-//			welcomeScreen.add(clickMedium);
-//			welcomeScreen.add(clickHard);
-//			welcomeScreen.add(clickRandom);
 			welcomeScreen.add(clickPVP);
 			welcomeScreen.add(clickFourPVP);
 			
-			welcomeScreen.setVisible(true);
+		
 			mainWindow.add(welcomeScreen);
+			mainWindow.setVisible(true);
 		}
 	
 	

@@ -2,22 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ball {
-	private int ballSpeed, ballRadius, x, y, dirX=1, dirY=1, margin;
+	private int ballSpeed, ballRadius, x, y, dirX=1, dirY=1, margin, WINDOW_WIDTH, WINDOW_HEIGHT, paddleWidth, scoreBoardHeight;
 	private Color ballColor;
-	private int WINDOW_WIDTH, WINDOW_HEIGHT, paddleWidth, scoreBoardHeight;
-	
-	
-	public Ball(int x, int y, int dirX, int dirY, int ballSpeed, int ballRadius, Color ballColor, int WINDOW_WIDTH, int margin) {
-		this.ballSpeed = ballSpeed;
-		this.ballColor = ballColor;
-		this.ballRadius = ballRadius;
-		this.x = x;
-		this.y = y;
-		this.dirX = dirX;
-		this.dirY = dirY;
-		this.WINDOW_WIDTH = WINDOW_WIDTH;
-		this.margin = margin;
-	}
 	
 	public Ball (int x, int y, int dirX, int dirY, int ballSpeed, int ballRadius, Color ballColor, int WINDOW_WIDTH, int margin, int WINDOW_HEIGHT, int scoreBoardHeight, int paddleWidth) {
 		this.ballSpeed = ballSpeed;
