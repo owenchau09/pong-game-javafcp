@@ -23,7 +23,6 @@ public class SidePaddle extends Paddle {
 	}
 	
 	public void left() {
-		
 		if(xPos > (margin)) {
 			xPos -=  2*paddleSpeed;
 		}	

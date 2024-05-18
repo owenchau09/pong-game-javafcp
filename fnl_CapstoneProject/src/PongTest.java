@@ -27,7 +27,7 @@ public class PongTest extends JPanel implements ActionListener
 			label = new JLabel("Welcome To Pong");
 			
 			clickCPU = new JButton("Press to play against a cpu!");
-			clickEasy = new JButton("Easy");  //4 cpu modes
+			clickEasy = new JButton("Easy");  
 			clickMedium = new JButton("Medium");
 			clickHard = new JButton("Hard");
 			clickRandom = new JButton("Random Mode");
@@ -47,7 +47,7 @@ public class PongTest extends JPanel implements ActionListener
 			clickPVP.setBackground(Color.PINK);
 			clickEasy.setPreferredSize(new Dimension(100, 100));
 			clickEasy.setBackground(Color.CYAN);
-			clickFourPVP.setPreferredSize(new Dimension(100, 100));
+			clickFourPVP.setPreferredSize(new Dimension(300, 100));
 			clickFourPVP.setBackground(Color.CYAN);
 			
 			welcomeScreen.add(label);
@@ -71,7 +71,6 @@ public class PongTest extends JPanel implements ActionListener
 							
 							
 							clickEasy.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent l) { 
-//								mainWindow.remove(welcomeScreen);
 								mainWindow.requestFocus(); 
 								mainWindow.remove(clickMedium);
 								mainWindow.remove(clickEasy);
