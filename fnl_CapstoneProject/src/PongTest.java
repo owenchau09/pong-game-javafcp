@@ -75,6 +75,7 @@ public class PongTest extends JPanel implements ActionListener
 								mainWindow.remove(clickMedium);
 								mainWindow.remove(clickEasy);
 								mainWindow.remove(clickHard);
+								mainWindow.remove(clickRandom);
 								welcomeScreen.setVisible(false);
 								mainWindow.repaint();
 								mainWindow.addKeyListener(easy);
@@ -98,6 +99,7 @@ public class PongTest extends JPanel implements ActionListener
 								mainWindow.remove(clickMedium);
 								mainWindow.remove(clickEasy);
 								mainWindow.remove(clickHard);
+								mainWindow.remove(clickRandom);
 								welcomeScreen.setVisible(false);
 								mainWindow.repaint();
 								mainWindow.addKeyListener(medium);
@@ -120,6 +122,7 @@ public class PongTest extends JPanel implements ActionListener
 								mainWindow.remove(clickMedium);
 								mainWindow.remove(clickEasy);
 								mainWindow.remove(clickHard);
+								mainWindow.remove(clickRandom);
 								welcomeScreen.setVisible(false);
 								mainWindow.repaint();
 								mainWindow.addKeyListener(hard);
@@ -158,7 +161,7 @@ public class PongTest extends JPanel implements ActionListener
 								
 								mainWindow.setVisible(true);
 							}});
-
+							mainWindow.getContentPane().add(BorderLayout.SOUTH, clickRandom);
 							mainWindow.getContentPane().add(BorderLayout.CENTER, clickMedium);
 							mainWindow.getContentPane().add(BorderLayout.EAST, clickHard);
 							
