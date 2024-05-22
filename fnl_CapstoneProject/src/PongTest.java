@@ -12,24 +12,24 @@ public class PongTest extends JPanel implements ActionListener
 	private JButton clickCPU, clickEasy, clickMedium, clickHard, clickRandom, clickPVP, clickFourPVP;
 	private JLabel label;
 	private Drawer easy, medium, hard, random, PVP, fourPVP;
-	private GridLayout gameSelect;
+	private Color color;
 	
 		public PongTest() {
 			mainWindow = new JFrame("Pong Game Remix");
 			mainWindow.setBounds(150, 50, WINDOW_WIDTH+15, WINDOW_HEIGHT+82);
 			mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mainWindow.setResizable(false);
-			
+			color = new Color(51,102,204);
 			welcomeScreen = new JPanel();
-			welcomeScreen.setBackground(Color.GREEN);
+			welcomeScreen.setBackground(color);
 			welcomeScreen.setBounds(0, 0, WINDOW_WIDTH+15, WINDOW_HEIGHT+82);
-			
-			gameSelect = new GridLayout(0, 1, 0, 10);
-			welcomeScreen.setLayout(gameSelect);
+			welcomeScreen.setLayout(null);
 			
 			
-			label = new JLabel("Welcome To Pong");
-			label.setFont(new Font ("Serif", Font.BOLD, 100));
+			label = new JLabel("Welcome To Pong!");
+			label.setSize(WINDOW_WIDTH, 120);
+			label.setFont(new Font ("Serif", Font.BOLD, 80));
+			label.setLocation(80, 0);
 			
 			clickCPU = new JButton("Press to play against a cpu!");
 			clickEasy = new JButton("Easy");  
@@ -46,15 +46,17 @@ public class PongTest extends JPanel implements ActionListener
 			PVP = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT, 5);
 			fourPVP = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT, 6);
 			
-			clickCPU.setSize(250, 50);
-			
-			clickCPU.setBackground(Color.WHITE);
-			clickPVP.setSize(250, 50);
-			clickPVP.setBackground(Color.PINK);
+			clickCPU.setSize(250, 70);
+			clickCPU.setLocation((WINDOW_WIDTH+15)/2-125, 130);
+			clickCPU.setBackground(Color.RED);
+			clickPVP.setSize(250, 70);
+			clickPVP.setLocation((WINDOW_WIDTH+15)/2-125, 230);
+			clickPVP.setBackground(Color.ORANGE);
 //			clickEasy.setPreferredSize(new Dimension(250, 50));
 //			clickEasy.setBackground(Color.CYAN);
-			clickFourPVP.setSize(250, 50);
-			clickFourPVP.setBackground(Color.CYAN);
+			clickFourPVP.setSize(250, 70);
+			clickFourPVP.setLocation((WINDOW_WIDTH+15)/2-125, 330);
+			clickFourPVP.setBackground(Color.GREEN);
 			
 			welcomeScreen.add(label);
 			
