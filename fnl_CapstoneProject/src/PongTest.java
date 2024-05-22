@@ -12,7 +12,7 @@ public class PongTest extends JPanel implements ActionListener
 	private JButton clickCPU, clickEasy, clickMedium, clickHard, clickRandom, clickPVP, clickFourPVP;
 	private JLabel label;
 	private Drawer easy, medium, hard, random, PVP, fourPVP;
-	
+	private GridLayout gameSelect;
 	
 		public PongTest() {
 			mainWindow = new JFrame("Pong Game Remix");
@@ -24,7 +24,12 @@ public class PongTest extends JPanel implements ActionListener
 			welcomeScreen.setBackground(Color.GREEN);
 			welcomeScreen.setBounds(0, 0, WINDOW_WIDTH+15, WINDOW_HEIGHT+82);
 			
+			gameSelect = new GridLayout(0, 1, 0, 10);
+			welcomeScreen.setLayout(gameSelect);
+			
+			
 			label = new JLabel("Welcome To Pong");
+			label.setFont(new Font ("Serif", Font.BOLD, 100));
 			
 			clickCPU = new JButton("Press to play against a cpu!");
 			clickEasy = new JButton("Easy");  
@@ -41,13 +46,14 @@ public class PongTest extends JPanel implements ActionListener
 			PVP = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT, 5);
 			fourPVP = new Drawer(WINDOW_WIDTH, WINDOW_HEIGHT, 6);
 			
-			clickCPU.setPreferredSize(new Dimension(250, 100));
-			clickCPU.setBackground(Color.RED);
-			clickPVP.setPreferredSize(new Dimension(300, 100));
+			clickCPU.setSize(250, 50);
+			
+			clickCPU.setBackground(Color.WHITE);
+			clickPVP.setSize(250, 50);
 			clickPVP.setBackground(Color.PINK);
-			clickEasy.setPreferredSize(new Dimension(100, 100));
-			clickEasy.setBackground(Color.CYAN);
-			clickFourPVP.setPreferredSize(new Dimension(300, 100));
+//			clickEasy.setPreferredSize(new Dimension(250, 50));
+//			clickEasy.setBackground(Color.CYAN);
+			clickFourPVP.setSize(250, 50);
 			clickFourPVP.setBackground(Color.CYAN);
 			
 			welcomeScreen.add(label);
@@ -215,12 +221,15 @@ public class PongTest extends JPanel implements ActionListener
 					});
 			
 			
+			
+			
 			welcomeScreen.add(clickCPU);
 			welcomeScreen.add(clickPVP);
 			welcomeScreen.add(clickFourPVP);
 			
 		
 			mainWindow.add(welcomeScreen);
+			
 			mainWindow.setVisible(true);
 		}
 	
