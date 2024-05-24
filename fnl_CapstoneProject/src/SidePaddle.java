@@ -16,18 +16,21 @@ public class SidePaddle extends Paddle {
 		this.WINDOW_WIDTH = WINDOW_WIDTH;
 		this.paddleColor = color;
 	}
-		
+	
+	// This method moves the paddle right by double the paddle speed amount
 	public void right() {
 		if ((xPos + paddleLength) < (WINDOW_WIDTH-margin))
 			xPos += paddleSpeed *2;
 	}
 	
+	// This method moves the paddle left by double the paddle speed amount
 	public void left() {
 		if(xPos > (margin)) {
 			xPos -=  2*paddleSpeed;
 		}	
 	}
 	
+	// This method returns whether the ball collides with the top and bottom paddles or not
 	public boolean horizontalCollides(Ball pongBall) {
 		if ((pongBall.getY() + pongBall.getBallRadius()) >=  yPos && ((pongBall.getY() - pongBall.getBallRadius()) <= (yPos + paddleWidth)))
 		{
@@ -43,9 +46,8 @@ public class SidePaddle extends Paddle {
 		return false;
 	}
 
-	
-	public void draw(Graphics g)
-	{
+	// This method draws the paddle at its current coordinates and color
+	public void draw(Graphics g) {
 		g.setColor(paddleColor); 
 		
 		g.fillRect(xPos, yPos, paddleLength, paddleWidth); 

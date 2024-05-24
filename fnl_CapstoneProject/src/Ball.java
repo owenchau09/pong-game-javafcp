@@ -20,17 +20,17 @@ public class Ball {
 		this.margin = margin;
 	}
 	
-	// This method gets the current speed of the ball
+	// This method returns the current speed of the ball
 	public int getBallSpeed() {
 		return ballSpeed;
 	}
 	
-	// This method gets the x position of the ball
+	// This method returns the current x position of the ball
 	public int getX() {
 		return x;
 	}
 	
-	// This method gets the y position of the ball
+	// This method returns the current y position of the ball
 	public int getY() {
 		return y;
 	}
@@ -40,7 +40,7 @@ public class Ball {
 		return ballRadius;
 	}
 	
-	// This method gets the color of the ball
+	// This method returns the current color of the ball
 	public Color getBallColor() {
 		return ballColor;
 	}
@@ -53,15 +53,6 @@ public class Ball {
 	// This method sets the y value of the ball
 	public void setY(int y) {
 		this.y = y;
-	}
-	
-	// In the case of a collision between a ball and the paddle this method will be run
-	public void changeDirX() {
-		dirX *= -1;
-	}
-	
-	public void changeDirY() {
-		dirY *= -1;
 	}
 	
 	// This method sets the speed of the ball
@@ -79,18 +70,30 @@ public class Ball {
 		this.ballColor = ballColor;
 	}
 	
-	// This method determines how the ball bounces
+	// In the case of a collision between a ball and the paddle this method will run, changing the x direction of the ball
+	public void changeDirX() {
+		dirX *= -1;
+	}
+	
+	// In the case of a collision between a ball and the top and bottom borders, this method will run, changing the y direction of the ball
+	public void changeDirY() {
+		dirY *= -1;
+	}
+	
+	// This method will bounce the ball when it fits the specified conditions
 	public void bounce(int topSide, int bottomSide) {
 		if(y >= (bottomSide-(ballRadius)) || y < (topSide+(ballRadius))) {
 			dirY*=-1;
 		}
 	}
 	
+	// This method changes the coordinates of the ball
 	public void move() {
 		x += (ballSpeed*dirX);
 		y += (ballSpeed*dirY);
 	}
 	
+	// This method determines and returns whether a point is scored or not (the ball crosses the right side)
 	public boolean checkScoreCPU(Ball pongBall) {
 		if(pongBall.getX() >= WINDOW_WIDTH-margin) {
 			return true;
@@ -98,6 +101,7 @@ public class Ball {
 		return false;
 	}
 	
+	// This method determines and returns whether a point is scored or not (the ball crosses the left side)
 	public boolean checkScoreP1(Ball pongBall) {
 		if(pongBall.getX() < margin) {
 			return true;
@@ -105,6 +109,7 @@ public class Ball {
 		return false;
 	}
 	
+	// This method determines and returns whether a point is scored or not (the ball crosses the right side)
 	public boolean checkScoreP2(Ball pongBall) {
 		if(pongBall.getX() >= WINDOW_WIDTH-margin) {
 			return true;
@@ -112,12 +117,15 @@ public class Ball {
 		return false;
 	}
 	
+	// This method determines and returns whether a point is scored or not (the ball crosses the top side)
 	public boolean checkScoreP3(Ball pongBall) {
 		if(pongBall.getY() < margin + scoreBoardHeight) {
 			return true;
 		}
 		return false;
 	}
+	
+	// This method determines and returns whether a point is scored or not (the ball crosses the bottom side)
 	public boolean checkScoreP4(Ball pongBall) {
 		if(pongBall.getY() >= WINDOW_HEIGHT + margin - paddleWidth - 1) {
 			return true;
@@ -125,8 +133,8 @@ public class Ball {
 		return false;
 	}
 	
-	public void draw(Graphics g)
-	{
+	// This method draws the ball at its current coordinates and color
+	public void draw(Graphics g) {
 		g.setColor(ballColor); 
 		
 		g.fillOval(x-ballRadius, y-ballRadius, ballRadius*2, ballRadius*2); 
