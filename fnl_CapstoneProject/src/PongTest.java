@@ -235,7 +235,7 @@ public class PongTest extends JPanel implements ActionListener
 			mainWindow.setVisible(true);
 		}
 	
-	
+	// This is the main method that instantiates the constructor
 	public static void main(String[] args)
 	{
 		new PongTest();
