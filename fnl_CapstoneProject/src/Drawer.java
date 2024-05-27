@@ -76,6 +76,7 @@ public class Drawer extends JPanel implements KeyListener
 		}
 	}
 	
+	
 	// This method reset's the ball position to the center after a point is scored
 	public void reset() {
 		pongBall.setX(WINDOW_WIDTH/2);
@@ -111,202 +112,263 @@ public class Drawer extends JPanel implements KeyListener
 	  }
 	
 	// This method runs the game and performs all the game logic 
-	public void run() {
+	public void run(int runAmt) {
 		
-		pongBall.move();
 		
-		if (isMultiplayer)
-		{
-			if (p1.collides(pongBall) || p2.collides(pongBall)) {
-				pongBall.changeDirX();
+			pongBall.move();
+			if (isMultiplayer)
+			{
+				if (p1.collides(pongBall) || p2.collides(pongBall)) {
+					pongBall.changeDirX();
+				}
+				
+				pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
+				
+				if(upKeyPressed) {
+					p1.up();
+				}
+				
+				if(downKeyPressed) {
+					p1.down();
+				}
+				
+				if(wKeyPressed) {
+					p2.up();
+				}
+				
+				if(sKeyPressed) {
+					p2.down();
+				}
+				
+				if(pongBall.checkScoreP1(pongBall)) {
+					p1Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP2(pongBall)) {
+					p2Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP2(pongBall)) {
+					p2Score++;
+					reset();
+				}
 			}
-			
-			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
-			
-			if(upKeyPressed) {
-				p1.up();
+			else if (level == 4) {
+				if (p1.collides(pongBall) || cpu.collides(pongBall)) {
+					pongBall.changeDirX();
+					r = random.nextInt(256); 
+					g = random.nextInt(256);	 
+					b = random.nextInt(256);	 
+					Color randomColor = new Color(r, g, b);
+					pongBall.setBallColor(randomColor);
+					rand = (int) random.nextInt(20);
+					pongBall.setBallSpeed(ballSpeed + rand);
+					cpu.setPaddleSpeed(rand + paddleSpeed + (int) random.nextInt(20));
+					p1.setPaddleSpeed(rand + paddleSpeed + (int) random.nextInt(20));
+					cpu.setPaddleLength(paddleLength + (int) random.nextInt(WINDOW_HEIGHT-6*margin));
+					p1.setPaddleLength(paddleLength + (int) random.nextInt(WINDOW_HEIGHT-6*margin));
+				}
+				
+				pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
+				
+				if(upKeyPressed) {
+					p1.up();
+				}
+				
+				if(downKeyPressed) {
+					p1.down();
+				}
+				
+				paddleCenterY = cpu.getYPos()+(paddleLength/2);
+				
+				if(paddleCenterY < pongBall.getY()) {
+					cpu.down();
+				}
+				
+				if(paddleCenterY > pongBall.getY()) {
+					cpu.up();
+				}
+				
+				if(pongBall.checkScoreP1(pongBall)) {
+					p1Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreCPU(pongBall)) {
+					cpuScore++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP2(pongBall)) {
+					p2Score++;
+					reset();
+				}
 			}
-			
-			if(downKeyPressed) {
-				p1.down();
+			else if (isQuadPlayer)
+			{
+				if (p1.collides(pongBall) || p2.collides(pongBall)) {
+					pongBall.changeDirX();
+				}
+				
+				 if (p3.horizontalCollides(pongBall) || p4.horizontalCollides(pongBall)) {
+					pongBall.changeDirY();
+				}
+				
+				if(upKeyPressed) {
+					p1.up();
+				}
+				
+				if(downKeyPressed) {
+					p1.down();
+				}
+				
+				if(wKeyPressed) {
+					p2.up();
+				}
+				if(sKeyPressed) {
+					p2.down();
+				}
+				
+				if (aKeyPressed) {
+					p3.left();
+				}
+				
+				if (leftKeyPressed) {
+					p4.left();
+				}
+				
+				if (dKeyPressed) {
+					p3.right();
+				}
+				
+				if (rightKeyPressed) {
+					p4.right();
+				}
+				
+				if(pongBall.checkScoreP1(pongBall)) {
+					p2Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP2(pongBall)) {
+					p1Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP3(pongBall)) {
+					p1Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP4(pongBall)) {
+					p2Score++;
+					reset();
+				}
 			}
-			
-			if(wKeyPressed) {
-				p2.up();
+			else
+			{
+				if (p1.collides(pongBall) || cpu.collides(pongBall)) {
+					pongBall.changeDirX();
+				}
+				
+				pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
+				
+				if(upKeyPressed) {
+					p1.up();
+				}
+				
+				if(downKeyPressed) {
+					p1.down();
+				}
+				
+				paddleCenterY = cpu.getYPos()+(paddleLength/2);
+				
+				if(paddleCenterY < pongBall.getY()) {
+					cpu.down();
+				}
+				
+				if(paddleCenterY > pongBall.getY()) {
+					cpu.up();
+				}
+				
+				if(pongBall.checkScoreP1(pongBall)) {
+					p1Score++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreCPU(pongBall)) {
+					cpuScore++;
+					reset();
+				}
+				
+				if(pongBall.checkScoreP2(pongBall)) {
+					p2Score++;
+					reset();
+				}
 			}
-			
-			if(sKeyPressed) {
-				p2.down();
-			}
-			
-			if(pongBall.checkScoreP1(pongBall)) {
-				p1Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP2(pongBall)) {
-				p2Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP2(pongBall)) {
-				p2Score++;
-				reset();
-			}
+		
+		
+		
+		
+	}
+	
+	public void resetLevel() {
+		this.WINDOW_WIDTH = WINDOW_WIDTH;
+		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
+		this.level = level;
+		p1Score = 0;
+		cpuScore = 0;
+		upKeyPressed = false;
+		downKeyPressed = false;
+		random = new Random();
+		ballSpeed = 0;
+		paddleLength = (WINDOW_HEIGHT)/7;
+		margin = 20;
+		scoreBoardHeight = WINDOW_HEIGHT/16;
+		x = margin;
+		y = (WINDOW_HEIGHT)/2-paddleLength/2;
+		paddleSpeed = 6;
+		paddleWidth = 11;
+		paddleCenterY = y-(paddleLength/2);
+		if(level == 1) {
+			cpu = new Paddle(x, y, paddleSpeed-1, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 6, 10, Color.GREEN, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
-		else if (level == 4) {
-			if (p1.collides(pongBall) || cpu.collides(pongBall)) {
-				pongBall.changeDirX();
-				r = random.nextInt(256); 
-				g = random.nextInt(256);	 
-				b = random.nextInt(256);	 
-				Color randomColor = new Color(r, g, b);
-				pongBall.setBallColor(randomColor);
-				rand = (int) random.nextInt(20);
-				pongBall.setBallSpeed(ballSpeed + rand);
-				cpu.setPaddleSpeed(rand + paddleSpeed + (int) random.nextInt(20));
-				p1.setPaddleSpeed(rand + paddleSpeed + (int) random.nextInt(20));
-				cpu.setPaddleLength(paddleLength + (int) random.nextInt(WINDOW_HEIGHT-6*margin));
-				p1.setPaddleLength(paddleLength + (int) random.nextInt(WINDOW_HEIGHT-6*margin));
-			}
-			
-			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
-			
-			if(upKeyPressed) {
-				p1.up();
-			}
-			
-			if(downKeyPressed) {
-				p1.down();
-			}
-			
-			paddleCenterY = cpu.getYPos()+(paddleLength/2);
-			
-			if(paddleCenterY < pongBall.getY()) {
-				cpu.down();
-			}
-			
-			if(paddleCenterY > pongBall.getY()) {
-				cpu.up();
-			}
-			
-			if(pongBall.checkScoreP1(pongBall)) {
-				p1Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreCPU(pongBall)) {
-				cpuScore++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP2(pongBall)) {
-				p2Score++;
-				reset();
-			}
+		else if(level == 2) {
+			cpu = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 7, 10, Color.ORANGE, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);	
 		}
-		else if (isQuadPlayer)
-		{
-			if (p1.collides(pongBall) || p2.collides(pongBall)) {
-				pongBall.changeDirX();
-			}
-			
-			 if (p3.horizontalCollides(pongBall) || p4.horizontalCollides(pongBall)) {
-				pongBall.changeDirY();
-			}
-			
-			if(upKeyPressed) {
-				p1.up();
-			}
-			
-			if(downKeyPressed) {
-				p1.down();
-			}
-			
-			if(wKeyPressed) {
-				p2.up();
-			}
-			if(sKeyPressed) {
-				p2.down();
-			}
-			
-			if (aKeyPressed) {
-				p3.left();
-			}
-			
-			if (leftKeyPressed) {
-				p4.left();
-			}
-			
-			if (dKeyPressed) {
-				p3.right();
-			}
-			
-			if (rightKeyPressed) {
-				p4.right();
-			}
-			
-			if(pongBall.checkScoreP1(pongBall)) {
-				p2Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP2(pongBall)) {
-				p1Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP3(pongBall)) {
-				p1Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP4(pongBall)) {
-				p2Score++;
-				reset();
-			}
+		else if(level == 3) {
+			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.RED, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
-		else
-		{
-			if (p1.collides(pongBall) || cpu.collides(pongBall)) {
-				pongBall.changeDirX();
-			}
-			
-			pongBall.bounce(margin+scoreBoardHeight, WINDOW_HEIGHT+scoreBoardHeight-margin-1);
-			
-			if(upKeyPressed) {
-				p1.up();
-			}
-			
-			if(downKeyPressed) {
-				p1.down();
-			}
-			
-			paddleCenterY = cpu.getYPos()+(paddleLength/2);
-			
-			if(paddleCenterY < pongBall.getY()) {
-				cpu.down();
-			}
-			
-			if(paddleCenterY > pongBall.getY()) {
-				cpu.up();
-			}
-			
-			if(pongBall.checkScoreP1(pongBall)) {
-				p1Score++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreCPU(pongBall)) {
-				cpuScore++;
-				reset();
-			}
-			
-			if(pongBall.checkScoreP2(pongBall)) {
-				p2Score++;
-				reset();
-			}
+		else if(level == 4) {
+			cpu = new Paddle(x, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed+4, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 10, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
 		}
+		
+		else if(level == 5) {
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			isMultiplayer = true;
+		}
+		
+		else if (level == 6) {
+			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			p2 = new Paddle(x, y, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p3 = new SidePaddle((15+WINDOW_WIDTH)/2-paddleLength/2, margin+scoreBoardHeight, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
+			p4 = new SidePaddle((15+WINDOW_WIDTH)/2-paddleLength/2, WINDOW_HEIGHT + scoreBoardHeight - margin - paddleWidth + 1, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardWidth, WINDOW_WIDTH, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
+			pongBall = new Ball((15+WINDOW_WIDTH)/2-5, WINDOW_HEIGHT/2, 1, 1, 5, 10, Color.BLACK, WINDOW_WIDTH, margin, WINDOW_HEIGHT, scoreBoardHeight, paddleWidth);
+			isQuadPlayer = true;
+	}
 	}
 	
 	// This method paints the screen with all the game items

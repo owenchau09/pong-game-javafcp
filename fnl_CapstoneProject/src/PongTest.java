@@ -2,9 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.awt.BorderLayout;
+
 @SuppressWarnings("serial")
-public class PongTest extends JPanel implements ActionListener
+public class PongTest extends JPanel implements ActionListener, KeyListener
 {	
 	private int WINDOW_WIDTH = 800, WINDOW_HEIGHT = 400;
 	private JPanel welcomeScreen;
@@ -13,6 +16,9 @@ public class PongTest extends JPanel implements ActionListener
 	private JLabel label;
 	private Drawer easy, medium, hard, random, PVP, fourPVP;
 	private Color color;
+	private boolean upKeyPressed = false, downKeyPressed = false, escPressed = false, isRunning = true;
+	private Timer timerEasy;
+	private int  easyRunAmt = 1;
 	
 		public PongTest() {
 			mainWindow = new JFrame("Pong Game Remix");
@@ -57,6 +63,7 @@ public class PongTest extends JPanel implements ActionListener
 			clickFourPVP.setSize(250, 70);
 			clickFourPVP.setLocation((WINDOW_WIDTH+15)/2-125, 330);
 			clickFourPVP.setBackground(Color.GREEN);
+			mainWindow.addKeyListener(this);
 			
 			welcomeScreen.add(label);
 			
@@ -68,6 +75,7 @@ public class PongTest extends JPanel implements ActionListener
 							
 							welcomeScreen.setVisible(false);
 							mainWindow.remove(welcomeScreen);
+//							mainWindow.addKeyListener(this);
 						
 							welcomeScreen.setVisible(true);
 							mainWindow.requestFocus();
@@ -80,6 +88,7 @@ public class PongTest extends JPanel implements ActionListener
 							
 							clickEasy.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent l) { 
 								mainWindow.requestFocus(); 
+								//easy.resetLevel();
 								mainWindow.remove(clickMedium);
 								mainWindow.remove(clickEasy);
 								mainWindow.remove(clickHard);
@@ -89,16 +98,34 @@ public class PongTest extends JPanel implements ActionListener
 								mainWindow.addKeyListener(easy);
 								mainWindow.add(easy);
 									
-								Timer timer = new Timer(30, new ActionListener() {
+								timerEasy = new Timer(30, new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
-								        easy.run();
+								        easy.run(easyRunAmt);
 								        easy.repaint();
 									}
 								});
-								timer.setInitialDelay(1000);
-								timer.start();							
+								timerEasy.restart();
+								//timerEasy.setInitialDelay(1000);
+								if (isRunning) {
+									timerEasy.start();
+								}
+								else {
+									timerEasy.stop();
+									timerEasy.restart();
+									timerEasy.start();
+								}
 								
+//								easy.requestFocus();
+								
+								
+//								if (escPressed == true) {
+//									mainWindow.remove(easy);
+//									mainWindow.repaint();
+//									mainWindow.add(welcomeScreen);
+//								}
+													
 								mainWindow.setVisible(true);
+								
 								
 							}});
 							
@@ -115,7 +142,7 @@ public class PongTest extends JPanel implements ActionListener
 									
 								Timer timer = new Timer(30, new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
-								        medium.run();
+								        medium.run(1);
 								        medium.repaint();
 									}
 								});
@@ -138,7 +165,7 @@ public class PongTest extends JPanel implements ActionListener
 									
 								Timer timer = new Timer(30, new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
-								        hard.run();
+								        hard.run(1);
 								        hard.repaint();
 									}
 								});
@@ -160,7 +187,7 @@ public class PongTest extends JPanel implements ActionListener
 									
 								Timer timer = new Timer(30, new ActionListener() {
 									public void actionPerformed(ActionEvent e) {
-								        random.run();
+								        random.run(1);
 								        random.repaint();
 									}
 								});
@@ -191,7 +218,7 @@ public class PongTest extends JPanel implements ActionListener
 							
 							Timer timer = new Timer(30, new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
-									PVP.run();
+									PVP.run(1);
 									PVP.repaint();
 								}
 							});
@@ -213,7 +240,7 @@ public class PongTest extends JPanel implements ActionListener
 							
 							Timer timer = new Timer(30, new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
-									fourPVP.run();
+									fourPVP.run(1);
 									fourPVP.repaint();
 								}
 							});
@@ -246,6 +273,45 @@ public class PongTest extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		
 	}
+	public void keyTyped (KeyEvent j){
+	}
+	public void keyPressed (KeyEvent j) {
+		if (j.getKeyCode() == KeyEvent.VK_UP) {
+			upKeyPressed = true;
+		}
+		if (j.getKeyCode() == KeyEvent.VK_DOWN) {
+			downKeyPressed = true;
+		}
+		if (j.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			escPressed = true;
+			System.out.println("esc pressed");
+			easyRunAmt ++;
+			easy.resetLevel();
+		
+			timerEasy.stop();
+//			timerEasy.
+//			//mainWindow.removeKeyListener(easy);
+			mainWindow.remove(easy);
+//			isRunning = false;
+			easy.repaint();
+			//easy.stop();
+			mainWindow.repaint();
+			mainWindow.add(welcomeScreen);
+			welcomeScreen.setVisible(true);
+		}
+	}
+	public void keyReleased (KeyEvent j) {
+		if (j.getKeyCode() == KeyEvent.VK_UP) {
+			upKeyPressed = false;
+		}
+		if (j.getKeyCode() == KeyEvent.VK_DOWN) {
+			downKeyPressed = false;
+		}
+		if (j.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			escPressed = false;
+		}
+	}
+
 	
 }
 		       
@@ -256,4 +322,3 @@ public class PongTest extends JPanel implements ActionListener
 		
 	
 	
-
