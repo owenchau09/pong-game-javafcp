@@ -83,7 +83,7 @@ public class Drawer extends JPanel implements KeyListener
 		pongBall.setY(WINDOW_HEIGHT/2);
 	}
 
-	// This method determines when a key is pressed and returns true if so
+	// This method determines when a key is pressed and changes the boolean value to true if so
 	public void keyPressed(KeyEvent e) {
 	  	if (e.getKeyCode() == KeyEvent.VK_UP) {
 	  		upKeyPressed = true;
@@ -111,8 +111,8 @@ public class Drawer extends JPanel implements KeyListener
 	  	}		
 	  }
 	
-	// This method runs the game and performs all the game logic 
-	public void run(int runAmt) {
+	// This method runs the game with the mode selected and performs all the game logic 
+	public void run() {
 		
 		
 			pongBall.move();
@@ -308,30 +308,10 @@ public class Drawer extends JPanel implements KeyListener
 					reset();
 				}
 			}
-		
-		
-		
-		
 	}
 	
-	public void resetLevel() {
-		this.WINDOW_WIDTH = WINDOW_WIDTH;
-		this.WINDOW_HEIGHT = WINDOW_HEIGHT;
-		this.level = level;
-		p1Score = 0;
-		cpuScore = 0;
-		upKeyPressed = false;
-		downKeyPressed = false;
-		random = new Random();
-		ballSpeed = 0;
-		paddleLength = (WINDOW_HEIGHT)/7;
-		margin = 20;
-		scoreBoardHeight = WINDOW_HEIGHT/16;
-		x = margin;
-		y = (WINDOW_HEIGHT)/2-paddleLength/2;
-		paddleSpeed = 6;
-		paddleWidth = 11;
-		paddleCenterY = y-(paddleLength/2);
+	// This method resets the position 
+	public void resetLevel(int level) {
 		if(level == 1) {
 			cpu = new Paddle(x, y, paddleSpeed-1, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.RED);
 			p1 = new Paddle(WINDOW_WIDTH-paddleWidth-margin+1, y, paddleSpeed, (WINDOW_HEIGHT)/6, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT, Color.BLUE);
@@ -382,7 +362,6 @@ public class Drawer extends JPanel implements KeyListener
 			String p2Scores = p2Score+ "";
 			
 			g.drawRect(margin, margin+scoreBoardHeight, WINDOW_WIDTH-2*margin, WINDOW_HEIGHT-2*margin);
-			//g.drawRect(margin, 0, WINDOW_WIDTH-margin, scoreBoardHeight); 
 			g.drawRect(margin, 1, (WINDOW_WIDTH-margin)/3, scoreBoardHeight - 2);
 			g.drawString(p1Scores, margin + 700, scoreBoardHeight/2);
 			g.drawString(p2Scores, margin + 100, scoreBoardHeight/2);
@@ -430,11 +409,8 @@ public class Drawer extends JPanel implements KeyListener
 		
 		
 	}
-
-	public void keyTyped(KeyEvent e) {
-	}
 	
-	// This method determines when a key is released, return false if so
+	// This method determines when a key is released, returns false if so
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 	  		upKeyPressed = false;
@@ -477,6 +453,11 @@ public class Drawer extends JPanel implements KeyListener
 		int p1Score1 = Drawer.p1Score;
 		
 		return p1Score1;
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
 	}
 
 }

@@ -57,7 +57,7 @@ public class Ball {
 	
 	// This method sets the speed of the ball
 	public void setBallSpeed(int ballSpeed) {
-		this.ballSpeed = 10;
+		this.ballSpeed = ballSpeed;
 	}
 	
 	// This method sets the radius of the ball
