@@ -1,6 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+/*
+ * Author: Hayden Floyd
+ * Date: 5/27/2024
+ * Revision: Production Release
+ * Notes: Extends Paddle by adding paddles on the top and bottom of the screen with their properties
+*/
+
 public class SidePaddle extends Paddle {
 	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, WINDOW_WIDTH;
 	private Color paddleColor;

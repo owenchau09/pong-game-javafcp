@@ -6,6 +6,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.BorderLayout;
 
+/*
+ * Author: Hayden Floyd
+ * Date: 5/27/2024
+ * Revision: Production Release
+ * Notes: Sets up window and executes Drawer (Contains main method)
+*/
+
 @SuppressWarnings("serial")
 public class PongTest extends JPanel implements ActionListener, KeyListener
 {	

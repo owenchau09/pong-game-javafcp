@@ -5,6 +5,13 @@ import java.awt.event.KeyEvent;
 import java.util.Random; 
 import java.awt.event.*;
 
+/*
+ * Authors: Hayden Floyd and Owen Chau
+ * Date: 5/27/2024
+ * Revision: Production Release
+ * Notes: Runs the game for different modes, takes user input, paints scoreboard and game
+*/
+
 @SuppressWarnings("serial")
 public class Drawer extends JPanel implements KeyListener
 {

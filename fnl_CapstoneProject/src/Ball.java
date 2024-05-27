@@ -1,6 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+/*
+ * Author: Owen Chau
+ * Date: 5/27/2024
+ * Revision: Production Release
+ * Notes: Bounces across the screen and determines when a point is scored
+*/
+
 public class Ball {
 	private int ballSpeed, ballRadius, x, y, dirX=1, dirY=1, margin, WINDOW_WIDTH, WINDOW_HEIGHT, paddleWidth, scoreBoardHeight;
 	private Color ballColor;

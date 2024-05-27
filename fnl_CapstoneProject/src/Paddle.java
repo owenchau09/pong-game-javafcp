@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/*
+ * Author: Owen Chau
+ * Date: 5/27/2024
+ * Revision: Production Release
+ * Notes: Moves up and down and checks collisions with Ball
+*/
+
 public class Paddle {
 	private int xPos, yPos, paddleSpeed, paddleLength, paddleWidth, margin, scoreBoardHeight, WINDOW_HEIGHT;
 	private Color paddleColor;
