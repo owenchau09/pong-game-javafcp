@@ -13,7 +13,7 @@ public class PongTest extends JPanel implements ActionListener, KeyListener
 	private JPanel welcomeScreen;
 	private JFrame mainWindow;
 	private JButton clickCPU, clickEasy, clickMedium, clickHard, clickRandom, clickPVP, clickFourPVP;
-	private JLabel label;
+	private JLabel welcomeLabel;
 	private Drawer easy, medium, hard, random, PVP, fourPVP;
 	private Color color;
 	@SuppressWarnings("unused")
@@ -32,10 +32,10 @@ public class PongTest extends JPanel implements ActionListener, KeyListener
 		welcomeScreen.setLayout(null);
 		
 		
-		label = new JLabel("Welcome To Pong!");
-		label.setSize(WINDOW_WIDTH, 120);
-		label.setFont(new Font ("Serif", Font.BOLD, 80));
-		label.setLocation(80, 0);
+		welcomeLabel = new JLabel("Welcome To Pong!");
+		welcomeLabel.setSize(WINDOW_WIDTH, 120);
+		welcomeLabel.setFont(new Font ("Serif", Font.BOLD, 80));
+		welcomeLabel.setLocation(80, 0);
 		
 		clickCPU = new JButton("Press to play against a cpu!");
 		clickEasy = new JButton("Easy");  
@@ -105,7 +105,7 @@ public class PongTest extends JPanel implements ActionListener, KeyListener
 		});
 		
 		mainWindow.addKeyListener(this);
-		welcomeScreen.add(label);
+		welcomeScreen.add(welcomeLabel);
 		
 		clickCPU.addActionListener(
 				new ActionListener()

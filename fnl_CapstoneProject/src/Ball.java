@@ -89,7 +89,7 @@ public class Ball {
 	
 	// This method changes the coordinates of the ball
 	public void move() {
-		x += (ballSpeed*dirX);
+		x += (ballSpeed *dirX);
 		y += (ballSpeed*dirY);
 	}
 	
