@@ -207,6 +207,7 @@ public class PongTest extends JPanel implements ActionListener, KeyListener
 							mainWindow.remove(clickMedium);
 							mainWindow.remove(clickEasy);
 							mainWindow.remove(clickHard);
+							mainWindow.remove(clickRandom);
 							welcomeScreen.setVisible(false);
 							mainWindow.repaint();
 							mainWindow.addKeyListener(random);
